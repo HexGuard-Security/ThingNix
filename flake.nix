@@ -55,13 +55,13 @@
           pkgs = pkgsFor system;
         in {
           iso = nixos-generators.nixosGenerate {
-            inherit pkgs; 
+            inherit pkgs; # Only pass pkgs, not system
             modules = [
               ./nixos/configurations/thingnix/default.nix
               {
                 nixpkgs.config.allowUnfree = true;
-                # Use a more stable kernel
-                boot.kernelPackages = pkgs.linuxPackages_6_1;
+                # Use a more stable kernel - use mkForce to override the definition in default.nix
+                boot.kernelPackages = nixpkgs.lib.mkForce pkgs.linuxPackages_6_1;
                 # Explicitly set ISO image properties
                 isoImage.makeEfiBootable = true;
                 isoImage.makeUsbBootable = true;
