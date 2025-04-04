@@ -39,16 +39,16 @@
     kalibrate-rtl  # GSM calibration
     
     # Zigbee and BLE tools
-    rfcat
+    # rfcat - removed due to compatibility issues
     killerbee
     
     # Bluetooth tools
-    ubertooth
+    # ubertooth - removed due to compatibility issues
     btscanner
     crackle
     
     # RF replay/fuzzing
-    rfcat
+    # rfcat - removed due to compatibility issues
     rflib
     
     # RFID tools
@@ -180,37 +180,37 @@
     # YARD Stick One
     ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="605b", SYMLINK+="YARD-Stick-One-%k", MODE="660", GROUP="plugdev"
     
-    # Ubertooth
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6002", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6003", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6004", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6005", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6006", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6007", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6008", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6009", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600a", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600b", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600c", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600d", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600e", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600f", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6010", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6011", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6012", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6013", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6014", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6015", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6016", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6017", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6018", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6019", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601a", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601b", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601c", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601d", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601e", MODE="0660", GROUP="plugdev"
-    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601f", MODE="0660", GROUP="plugdev"
+    # Ubertooth - commented out due to compatibility issues
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6002", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6003", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6004", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6005", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6006", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6007", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6008", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6009", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600a", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600b", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600c", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600d", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600e", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600f", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6010", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6011", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6012", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6013", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6014", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6015", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6016", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6017", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6018", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6019", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601a", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601b", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601c", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601d", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601e", MODE="0660", GROUP="plugdev"
+    # ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601f", MODE="0660", GROUP="plugdev"
   '';
   
   # Group configuration for SDR/RF devices

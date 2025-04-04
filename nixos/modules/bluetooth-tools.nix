@@ -13,11 +13,12 @@
     # BLE scanning and sniffing
     aioblescan  # Library to listen for BLE advertized packets
     # gattool is included in the bluez package
-    btlejack
+    # btlejack - removed due to compatibility issues
     
     # Bluetooth security testing
     crackle # Bluetooth Smart (BLE) encryption cracking
-    ubertooth # Bluetooth monitoring
+    # ubertooth - removed due to compatibility issues
+    # rfcat - removed due to compatibility issues
     
     # Bluetooth utilities
     blueman
@@ -32,11 +33,11 @@
     python3Packages.gattlib
     
     # Hardware support
-    ubertooth # Bluetooth monitoring hardware
-    rfcat # RF analysis
+    # ubertooth - removed due to compatibility issues
+    # rfcat - removed due to compatibility issues
     
     # Bluetooth development
-    btstack
+    # btstack - removed due to compatibility issues
     
     # Misc
     nrf-tools # Nordic Semiconductor tools for BLE development
@@ -147,7 +148,7 @@
   # Add udev rules for Bluetooth hardware
   services.udev.extraRules = ''
     # Ubertooth
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6002", GROUP="plugdev", MODE="0660"
+    # SUBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6002", GROUP="plugdev", MODE="0660"
     
     # Sniffle BLE Sniffer
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="16b3", GROUP="plugdev", MODE="0660"
@@ -156,7 +157,7 @@
     SUBSYSTEM=="usb", ATTRS{idVendor}=="1915", GROUP="plugdev", MODE="0660"
     
     # RFCat
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="4715", GROUP="plugdev", MODE="0660"
+    # SUBSYSTEM=="usb", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="4715", GROUP="plugdev", MODE="0660"
   '';
   
   # Configure Bluetooth hardware for optimal performance
