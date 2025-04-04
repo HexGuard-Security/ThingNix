@@ -110,14 +110,26 @@ jobs:
           
           # Create empty aarch64 checksum to avoid workflow errors
           touch build/thingnix-aarch64.sha256
-      
-      # Upload ISO as workflow artifact (can be accessed via nightly.link)
-      - name: Upload ISO as artifact
-        uses: actions/upload-artifact@v3.1.0
-        with:
-          name: thingnix-x86_64.iso
-          path: build/thingnix-x86_64.iso
-          retention-days: 90
+          
+          # Split ISO into smaller chunks for GitHub release
+          cd build
+          echo "Splitting ISO into chunks..."
+          split -b 1900m thingnix-x86_64.iso thingnix-x86_64.iso.part-
+          
+          # Create reassembly script
+          cat > reassemble.sh << 'EOF'
+          #!/bin/bash
+          # Script to reassemble ThingNix ISO from chunks
+          
+          echo "Reassembling ThingNix ISO from chunks..."
+          cat thingnix-x86_64.iso.part-* > thingnix-x86_64.iso
+          echo "ISO successfully reassembled: thingnix-x86_64.iso"
+          echo "You can verify the ISO with: sha256sum -c thingnix-x86_64.sha256"
+          EOF
+          
+          chmod +x reassemble.sh
+          ls -la
+          cd ..
 
       - name: Upload build artifacts
         if: startsWith(github.ref, 'refs/tags/')
@@ -127,6 +139,8 @@ jobs:
           draft: true
           prerelease: true
           files: |
+            build/thingnix-x86_64.iso.part-*
+            build/reassemble.sh
             build/thingnix-x86_64.sha256
             build/thingnix-aarch64.sha256
           body: |
@@ -145,9 +159,20 @@ jobs:
             
             ## ISO Download
             
-            The ISO file exceeds GitHub's 2GB file size limit for release assets and is available as a GitHub Actions artifact:
+            The ISO file has been split into multiple parts due to GitHub's file size limitations.
             
-            **Download Link**: [ThingNix ISO (x86_64)](https://nightly.link/HexGuard-Security/ThingNix/workflows/build-iso/main/thingnix-x86_64.iso.zip)
+            1. Download all the ISO parts (thingnix-x86_64.iso.part-*)
+            2. Download the reassemble.sh script
+            3. Place all files in the same directory
+            4. Run the reassemble script:
+               ```
+               chmod +x reassemble.sh
+               ./reassemble.sh
+               ```
+            5. Verify the ISO with:
+               ```
+               sha256sum -c thingnix-x86_64.sha256
+               ```
             
             Alternatively, you can build it locally:
             
@@ -163,13 +188,6 @@ jobs:
             nix build .#packages.x86_64-linux.iso
             
             # The ISO will be available at ./result
-            ```
-            
-            ## Verification
-            
-            To verify the integrity of the downloaded ISO, use:
-            ```
-            sha256sum -c thingnix-x86_64.sha256
             ```
             
             ## Note on aarch64 support
