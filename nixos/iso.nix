@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./configurations/thingnix/hardware/default.nix
+    ./hardware/default.nix
     ./modules/base.nix
     ./modules/desktop.nix
     ./modules/security-tools.nix
