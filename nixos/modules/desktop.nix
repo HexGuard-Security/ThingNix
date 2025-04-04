@@ -11,6 +11,12 @@
     # Enable display manager
     displayManager = {
       lightdm.enable = true;
+      # Auto login configuration moved here
+      defaultSession = "xfce";
+      autoLogin = {
+        enable = true;
+        user = "thingnix";
+      };
     };
     
     # Enable XFCE desktop environment
@@ -23,14 +29,7 @@
     };
   };
   
-  # Display manager settings (moved from xserver as per new NixOS structure)
-  services.displayManager = {
-    defaultSession = "xfce";
-    autoLogin = {
-      enable = true;
-      user = "thingnix";
-    };
-  };
+  # Remove standalone services.displayManager as it doesn't exist in NixOS 23.11
   
   # Touchpad configuration (moved from xserver as per new NixOS structure)
   services.libinput = {
