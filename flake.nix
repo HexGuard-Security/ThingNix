@@ -56,31 +56,8 @@
         in {
           iso = nixos-generators.nixosGenerate {
             inherit pkgs;
-            modules = [
-              ({ config, lib, ... }: {
-                imports = [ ./nixos/configurations/thingnix/default.nix ];
-                
-                # Override the kernel packages with a more stable version
-                boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_1;
-                
-                # Explicitly set ISO image properties
-                isoImage.makeEfiBootable = true;
-                isoImage.makeUsbBootable = true;
-                
-                # Disable virtualisation options that might cause issues
-                virtualisation = {
-                  docker.enable = false;
-                  libvirtd.enable = false;
-                  vmware.guest.enable = false;
-                  virtualbox.guest.enable = false;
-                };
-                
-                # Override nixpkgs.config to avoid the conflict
-                nixpkgs.config = lib.mkForce {
-                  allowUnfree = true;
-                };
-              })
-            ];
+            # Use our custom ISO configuration that doesn't set nixpkgs.config
+            modules = [ ./nixos/iso.nix ];
             format = "iso";
           };
         });
