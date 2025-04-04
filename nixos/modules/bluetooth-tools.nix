@@ -46,7 +46,7 @@
     wireshark # For Bluetooth protocol analysis
     
     # Bluetooth scanners and info tools
-    hcitool
+    # hcitool is included in the bluez package
     
     # BLE exploitation
     bettercap # Has BLE scanning/exploitation modules
