@@ -5,6 +5,7 @@
 [![Open Source Hardware](https://img.shields.io/badge/Hardware-Open%20Source-orange.svg?logo=open-source-initiative&logoColor=white)](https://www.oshwa.org)
 [![Version](https://img.shields.io/badge/Version-0.1.0--alpha-brightgreen.svg)](https://github.com/HexGuard-Security/ThingNix/releases)
 [![Maintained by HexGuard-Security](https://img.shields.io/badge/Maintained%20by-HexGuard--Security-red.svg)](https://github.com/HexGuard-Security)
+[![Status](https://img.shields.io/badge/Status-Pre--Release-yellow.svg)]()
 
 A reproducible NixOS-based operating system for IoT penetration testing and hardware hacking.
 
@@ -14,6 +15,8 @@ A reproducible NixOS-based operating system for IoT penetration testing and hard
   <img src="https://camo.githubusercontent.com/f4dde6518bf93a3a17b3b12c9c747d79c0e02984c1ce8f4fdcd0ccb339d02057/68747470733a2f2f7777772e6768696472612d7372652e6f72672f696d616765732f4748494452415f312e706e67" alt="Ghidra Logo" height="100"/>
   <img src="https://www.realtek.com/imgs/realtek_logo.png" alt="RTL-SDR Logo" height="100"/>
 </div>
+
+> **PRE-RELEASE STATUS**: ThingNix is currently in alpha development stage. We're actively looking for testers to help identify issues and provide feedback. See the [Testing](#become-a-tester) section to get involved!
 
 ## Overview
 
@@ -90,7 +93,97 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 
 ## Getting Started
 
-*Instructions will be added once initial ISO builds are available*
+### Quick Start
+
+To build and use ThingNix:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/HexGuard-Security/ThingNix.git
+   cd ThingNix
+   ```
+
+2. Build the ISO using the build script:
+   ```bash
+   ./build.sh
+   ```
+
+3. Flash the ISO to a USB drive:
+   ```bash
+   sudo dd if=build/thingnix-0.1.0-alpha-x86_64_linux.iso of=/dev/sdX bs=4M status=progress
+   ```
+
+4. Boot from the USB drive and start hacking!
+
+### System Requirements
+
+- **Minimal**: 2GB RAM, dual-core CPU, 20GB storage
+- **Recommended**: 8GB+ RAM, quad-core CPU, 50GB+ SSD, compatible SDR hardware
+
+### Supported Architectures
+
+- x86_64 (primary)
+- aarch64 (experimental)
+
+## Building the ISO
+
+ThingNix uses Nix Flakes to create reproducible builds. The build process varies depending on your host system:
+
+### On Linux
+
+If you're running Linux, you can build ThingNix directly:
+
+```bash
+# Make sure you have Nix installed with flakes enabled
+nix-shell -p nixos-generators git
+
+# Clone and build
+git clone https://github.com/HexGuard-Security/ThingNix.git
+cd ThingNix
+./build.sh
+```
+
+### On macOS
+
+Building NixOS-based systems on macOS requires additional steps. We've provided detailed instructions in [docs/BUILD-ON-MAC.md](docs/BUILD-ON-MAC.md).
+
+In short, you'll need to:
+1. Set up a Linux VM or container environment
+2. Build the ISO inside that environment
+3. Transfer the ISO back to your host system
+
+### On Windows
+
+Building on Windows requires WSL2 (Windows Subsystem for Linux) with a Linux distribution that supports Nix. Follow the Linux instructions after setting up your WSL environment.
+
+## Become a Tester
+
+**We need your help!** ThingNix is currently in alpha and we're looking for testers to help improve it before the official release. As a tester, you'll:
+
+- Build and try out pre-release versions of ThingNix
+- Test compatibility with various hardware devices
+- Report bugs and provide feedback
+- Help improve documentation
+- Suggest features and improvements
+
+**To become a tester:**
+
+1. Star and watch this repository for updates
+2. Join our [Discord server](https://discord.gg/thingnix) to connect with other testers
+3. Check the [Issues](https://github.com/HexGuard-Security/ThingNix/issues) page for known issues and testing tasks
+4. Report your findings by creating new issues with the "testing" label
+
+We particularly need testers with:
+- Various SDR hardware (RTL-SDR, HackRF, LimeSDR, etc.)
+- IoT development boards
+- JTAG/SWD debugging hardware
+- Zigbee/BLE sniffers
+
+## Tool Inventory
+
+ThingNix comes with a comprehensive suite of pre-installed security tools. For a complete list, see [TOOLS.md](docs/TOOLS.md).
+
+If you need a tool that isn't included, check our documentation on [adding custom packages](docs/custom-packages.md).
 
 ## Hardware Compatibility
 
@@ -101,7 +194,17 @@ ThingNix is designed to work with common IoT pentesting hardware:
 - Flash programmers (CH341A, etc.)
 - Zigbee/BLE sniffers
 
-See [HARDWARE.md](HARDWARE.md) for detailed compatibility information.
+See [HARDWARE.md](docs/HARDWARE.md) for detailed compatibility information.
+
+## Customization
+
+ThingNix is designed to be customizable. You can:
+
+- Replace the default wallpaper by editing `assets/wallpapers/thingnix-wallpaper.png`
+- Use one of the included themes or create your own in `assets/themes/`
+- Customize the icon set in `assets/icons/`
+
+For more detailed customization instructions, see [CUSTOMIZATION.md](docs/CUSTOMIZATION.md).
 
 ## Building
 
@@ -111,7 +214,20 @@ git clone https://github.com/HexGuard-Security/ThingNix.git
 cd ThingNix
 
 # Build a minimal ISO with the current config
-sudo nixos-generate -f iso --flake .#thingnix
+./build.sh
+```
+
+For more advanced build options:
+
+```bash
+# Build for a specific architecture
+./build.sh --arch aarch64-linux
+
+# Clean before building
+./build.sh --clean
+
+# Get help on build options
+./build.sh --help
 ```
 
 ## Contributing
@@ -123,7 +239,8 @@ ThingNix welcomes contributions! Please feel free to submit issues or pull reque
 - Improving hardware compatibility
 - Developing automation scripts for common tasks
 - Documentation improvements
-- For tools not available in nixpkgs or issues with current packages, please submit an issue on GitHub.
+
+For tools not available in nixpkgs or issues with current packages, please submit an issue on GitHub.
 
 ## Roadmap
 
