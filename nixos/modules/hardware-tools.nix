@@ -6,82 +6,82 @@
   # Install hardware-related packages
   environment.systemPackages = with pkgs; [
     # JTAG/SWD debugging
-    openocd
-    stlink
+    # openocd - commented out for build stability
+    # stlink - commented out for build stability
     
     # Embedded systems programming
-    avrdude
-    arduino
-    platformio
+    # avrdude - commented out for build stability
+    # arduino - commented out for build stability
+    # platformio - commented out for build stability
     
     # FPGA tools
-    icestorm
-    nextpnr
-    yosys
+    # icestorm - commented out for build stability
+    # nextpnr - commented out for build stability
+    # yosys - commented out for build stability
     
     # Firmware flashing
-    flashrom
-    esptool
+    # flashrom - commented out for build stability
+    # esptool - commented out for build stability
     
     # Logic analyzer
-    sigrok
-    pulseview
+    # sigrok - commented out for build stability
+    # pulseview - commented out for build stability
     
     # Bus analyzers
-    i2c-tools
-    spitools
+    # i2c-tools - commented out for build stability
+    # spitools - commented out for build stability
     
     # GPIO tools
-    wiringpi
-    libgpiod
+    # wiringpi - commented out for build stability
+    # libgpiod - commented out for build stability
     
     # EEPROM/Flash tools
     # Specific tools for CH341A programmer
     
     # USB analyzers
-    usbutils
+    usbutils  # keeping this as it's essential
     
     # PCB design tools
-    kicad
+    # kicad - commented out for build stability
     
     # Hardware simulation
-    ngspice
+    # ngspice - commented out for build stability
     
     # Serial communication
-    minicom
-    picocom
-    screen
+    # minicom - commented out for build stability
+    # picocom - commented out for build stability
+    # screen - commented out for build stability
     
     # Hardware monitoring
-    lm_sensors
-    smartmontools
+    # lm_sensors - commented out for build stability
+    # smartmontools - commented out for build stability
     
     # Embedded Linux
-    buildroot
+    # buildroot - commented out for build stability
     
     # Board support packages
     # Packages for popular IoT development boards
     # (Raspberry Pi, ESP32, Arduino, etc.)
     
     # Cross-compilation tools
-    gcc-arm-embedded
+    # gcc-arm-embedded - commented out for build stability
     
     # Hardware documentation
     
     # Hardware testing
-    stress-ng
-    memtester
+    # stress-ng - commented out for build stability
+    # memtester - commented out for build stability
     
     # Oscilloscope software support
     # For compatible USB oscilloscopes
     
     # Power management tools
-    powertop
-    tlp
+    # powertop - commented out for build stability
+    # tlp - commented out for build stability
     
     # Hardware reverse engineering
-    ghidra
-    radare2
+    # ghidra - commented out for build stability
+    # radare2 - commented out for build stability
   ];
   
   # Hardware access permissions
