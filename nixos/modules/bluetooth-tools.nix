@@ -11,7 +11,7 @@
     bluez-alsa
     
     # BLE scanning and sniffing
-    bleah
+    aioblescan  # Library to listen for BLE advertized packets
     gattool
     btlejack
     
