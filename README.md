@@ -3,7 +3,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![NixOS](https://img.shields.io/badge/NixOS-25.05-blue.svg?logo=nixos&logoColor=white)](https://nixos.org)
 [![Open Source Hardware](https://img.shields.io/badge/Hardware-Open%20Source-orange.svg?logo=open-source-initiative&logoColor=white)](https://www.oshwa.org)
-[![Version](https://img.shields.io/badge/Version-0.1.0--alpha-brightgreen.svg)](https://github.com/HexGuard-Security/ThingNix/releases)
 [![Maintained by HexGuard-Security](https://img.shields.io/badge/Maintained%20by-HexGuard--Security-red.svg)](https://github.com/HexGuard-Security)
 [![Status](https://img.shields.io/badge/Status-Pre--Release-yellow.svg)]()
 
@@ -44,20 +43,20 @@ Part of the future "NixCraft" series for specialized pentesting domains.
   <img src="https://flashrom.org/_images/flashrom_logo.png" alt="Flashrom" height="50"/>
 </div>
 
-| Tool | Version | Description |
-|------|---------|-------------|
-| Binwalk | Latest | Firmware analysis and extraction tool |
-| Ghidra | Latest | NSA's software reverse engineering framework |
-| Radare2 | Latest | Advanced hexadecimal editor, disassembler, and debugger |
-| Radare2-Cutter | Latest | GUI for Radare2 |
-| Rizin | Latest | UNIX-like reverse engineering framework |
-| OpenOCD | Latest | Open on-chip debugger for JTAG/SWD debugging |
-| Flashrom | Latest | ROM/flash chip programmer for firmware extraction |
-| GDB | Latest | GNU debugger for binary analysis |
-| GDB-Multitarget | Latest | GNU debugger with multi-architecture support |
-| IDA Free | Latest | Interactive disassembler (free version) |
-| Firmware-mod-kit | Latest | Tools to extract, modify and rebuild firmware images |
-| Unicorn | Latest | CPU emulator framework |
+| Tool | Description |
+|------|-------------|
+| Binwalk | Firmware analysis and extraction tool |
+| Ghidra | NSA's software reverse engineering framework |
+| Radare2 | Advanced hexadecimal editor, disassembler, and debugger |
+| Radare2-Cutter | GUI for Radare2 |
+| Rizin | UNIX-like reverse engineering framework |
+| OpenOCD | Open on-chip debugger for JTAG/SWD debugging |
+| Flashrom | ROM/flash chip programmer for firmware extraction |
+| GDB | GNU debugger for binary analysis |
+| GDB-Multitarget | GNU debugger with multi-architecture support |
+| IDA Free | Interactive disassembler (free version) |
+| Firmware-mod-kit | Tools to extract, modify and rebuild firmware images |
+| Unicorn | CPU emulator framework |
 
 ### RF/SDR
 <div align="left">
@@ -65,20 +64,20 @@ Part of the future "NixCraft" series for specialized pentesting domains.
   <img src="https://raw.githubusercontent.com/gqrx-sdr/gqrx/refs/heads/master/new_logo/PNG/horizontal%20color.png" alt="GQRX" height="50"/>
 </div>
 
-| Tool | Version | Description |
-|------|---------|-------------|
-| RTL-SDR | Latest | Software defined radio with RTL2832U chipset |
-| GNURadio | Latest | Signal processing framework for SDR |
-| GQRX | Latest | Software defined radio receiver |
-| Inspectrum | Latest | Tool for analyzing captured RF signals |
-| SDR++ | Latest | Modern SDR software with intuitive interface |
-| SDRangel | Latest | Multi-device SDR receiver/analyzer |
-| HackRF | Latest | Tools for HackRF SDR platform |
-| Multimon-NG | Latest | Digital transmission decoder (POCSAG, FLEX, etc.) |
-| Baudline | Latest | Time-frequency browser for signal analysis |
-| Airspy | Latest | Tools for Airspy SDR hardware |
-| gr-osmosdr | Latest | GNURadio block for various SDR hardware |
-| Kalibrate-RTL | Latest | Tool to check frequency accuracy of GSM base stations |
+| Tool | Description |
+|------|-------------|
+| RTL-SDR | Software defined radio with RTL2832U chipset |
+| GNURadio | Signal processing framework for SDR |
+| GQRX | Software defined radio receiver |
+| Inspectrum | Tool for analyzing captured RF signals |
+| SDR++ | Modern SDR software with intuitive interface |
+| SDRangel | Multi-device SDR receiver/analyzer |
+| HackRF | Tools for HackRF SDR platform |
+| Multimon-NG | Digital transmission decoder (POCSAG, FLEX, etc.) |
+| Baudline | Time-frequency browser for signal analysis |
+| Airspy | Tools for Airspy SDR hardware |
+| gr-osmosdr | GNURadio block for various SDR hardware |
+| Kalibrate-RTL | Tool to check frequency accuracy of GSM base stations |
 
 ### Bluetooth/BLE/Zigbee
 <div align="left">
@@ -86,18 +85,18 @@ Part of the future "NixCraft" series for specialized pentesting domains.
   <img src="https://camo.githubusercontent.com/9821c0a7122b8b41fe901586ad3efe5e5622687f61a73e0f51e88ac0833c6fbc/68747470733a2f2f7261772e6769746875622e636f6d2f6d696b657279616e2f637261636b6c652f6c6f676f2f637261636b6c652e706e67" alt="Crackle" height="50"/>
 </div>
 
-| Tool | Version | Description |
-|------|---------|-------------|
-| KillerBee | Latest | Framework for Zigbee/IEEE 802.15.4 security testing |
-| Bleah | Latest | BLE scanner for smart devices hacking |
-| Crackle | Latest | Decrypt and crack Bluetooth Smart (BLE) encryption |
-| BTLEJack | Latest | Bluetooth Low Energy Swiss-army knife |
-| Bluez | Latest | Linux Bluetooth protocol stack |
-| Ubertooth | Latest | Open source platform for Bluetooth experimentation |
-| Bluez-tools | Latest | Command-line utilities for Bluetooth |
-| Bluez-alsa | Latest | Bluetooth ALSA backend |
-| Btscanner | Latest | Bluetooth device scanner |
-| RFcat | Latest | RF analysis for sub-GHz communication |
+| Tool | Description |
+|------|-------------|
+| KillerBee | Framework for Zigbee/IEEE 802.15.4 security testing |
+| Bleah | BLE scanner for smart devices hacking |
+| Crackle | Decrypt and crack Bluetooth Smart (BLE) encryption |
+| BTLEJack | Bluetooth Low Energy Swiss-army knife |
+| Bluez | Linux Bluetooth protocol stack |
+| Ubertooth | Open source platform for Bluetooth experimentation |
+| Bluez-tools | Command-line utilities for Bluetooth |
+| Bluez-alsa | Bluetooth ALSA backend |
+| Btscanner | Bluetooth device scanner |
+| RFcat | RF analysis for sub-GHz communication |
 
 ### Network/Exploitation
 <div align="left">
@@ -106,21 +105,21 @@ Part of the future "NixCraft" series for specialized pentesting domains.
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Metasploit_logo_and_wordmark.png" alt="Metasploit" height="50"/>
 </div>
 
-| Tool | Version | Description |
-|------|---------|-------------|
-| Nmap | Latest | Network discovery and security auditing tool |
-| Metasploit | Latest | Penetration testing framework |
-| Bettercap | Latest | Swiss-army knife for network attacks and monitoring |
-| RouterSploit | Latest | Framework for embedded device exploitation |
-| Expliot | Latest | IoT exploitation framework |
-| Wireshark | Latest | Network protocol analyzer |
-| Burpsuite | Latest | Web application security testing platform |
-| ZAP Proxy | Latest | OWASP web application security scanner |
-| SQLmap | Latest | Automatic SQL injection tool |
-| THC-Hydra | Latest | Network login cracker |
-| John the Ripper | Latest | Password cracking tool |
-| Hashcat | Latest | Advanced password recovery utility |
-| Aircrack-ng | Latest | Wireless network security assessment tools |
+| Tool | Description |
+|------|-------------|
+| Nmap | Network discovery and security auditing tool |
+| Metasploit | Penetration testing framework |
+| Bettercap | Swiss-army knife for network attacks and monitoring |
+| RouterSploit | Framework for embedded device exploitation |
+| Expliot | IoT exploitation framework |
+| Wireshark | Network protocol analyzer |
+| Burpsuite | Web application security testing platform |
+| ZAP Proxy | OWASP web application security scanner |
+| SQLmap | Automatic SQL injection tool |
+| THC-Hydra | Network login cracker |
+| John the Ripper | Password cracking tool |
+| Hashcat | Advanced password recovery utility |
+| Aircrack-ng | Wireless network security assessment tools |
 
 ### Hardware Tools
 <div align="left">
@@ -128,19 +127,19 @@ Part of the future "NixCraft" series for specialized pentesting domains.
   <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Sigrok_logo.svg" alt="Sigrok" height="50"/>
 </div>
 
-| Tool | Version | Description |
-|------|---------|-------------|
-| OpenOCD | Latest | On-chip debugging, in-system programming, boundary-scan testing |
-| Sigrok | Latest | Signal analysis software suite |
-| Pulseview | Latest | Logic analyzer user interface for Sigrok |
-| Avrdude | Latest | AVR microcontroller programmer |
-| Arduino | Latest | Arduino IDE and tools |
-| PlatformIO | Latest | Cross-platform IDE for embedded development |
-| I2C-tools | Latest | Utilities for I2C bus |
-| SPI-tools | Latest | Utilities for SPI bus |
-| Flashrom | Latest | Universal ROM/flash chip programmer |
-| Bus Pirate | Latest | Hardware and software tools for bus communication |
-| Logic analyzer | Latest | Digital signal capture and analysis |
+| Tool | Description |
+|------|-------------|
+| OpenOCD | On-chip debugging, in-system programming, boundary-scan testing |
+| Sigrok | Signal analysis software suite |
+| Pulseview | Logic analyzer user interface for Sigrok |
+| Avrdude | AVR microcontroller programmer |
+| Arduino | Arduino IDE and tools |
+| PlatformIO | Cross-platform IDE for embedded development |
+| I2C-tools | Utilities for I2C bus |
+| SPI-tools | Utilities for SPI bus |
+| Flashrom | Universal ROM/flash chip programmer |
+| Bus Pirate | Hardware and software tools for bus communication |
+| Logic analyzer | Digital signal capture and analysis |
 
 ### Utilities
 <div align="left">
@@ -149,18 +148,18 @@ Part of the future "NixCraft" series for specialized pentesting domains.
   <img src="https://gitlab.com/uploads/-/system/project/avatar/11167699/logo.png" alt="QEMU" height="50"/>
 </div>
 
-| Tool | Version | Description |
-|------|---------|-------------|
-| Python3 | Latest | Programming language with tools for IoT security |
-| Wireshark | Latest | Network protocol analyzer |
-| QEMU | Latest | Open source machine emulator and virtualizer |
-| Sigrok | Latest | Signal analysis software suite |
-| Git | Latest | Version control system |
-| VSCode | Latest | Code editor for development and analysis |
-| Docker | Latest | Container platform for isolated testing |
-| Virt-Manager | Latest | Desktop tool for managing virtual machines |
-| OpenSSH | Latest | Remote access and file transfer tools |
-| Tmux | Latest | Terminal multiplexer for managing multiple console sessions |
+| Tool | Description |
+|------|-------------|
+| Python3 | Programming language with tools for IoT security |
+| Wireshark | Network protocol analyzer |
+| QEMU | Open source machine emulator and virtualizer |
+| Sigrok | Signal analysis software suite |
+| Git | Version control system |
+| VSCode | Code editor for development and analysis |
+| Docker | Container platform for isolated testing |
+| Virt-Manager | Desktop tool for managing virtual machines |
+| OpenSSH | Remote access and file transfer tools |
+| Tmux | Terminal multiplexer for managing multiple console sessions |
 
 ## Getting Started
 
