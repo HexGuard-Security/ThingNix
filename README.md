@@ -15,7 +15,6 @@ A reproducible NixOS-based operating system for IoT penetration testing and hard
   <img src="https://camo.githubusercontent.com/f4dde6518bf93a3a17b3b12c9c747d79c0e02984c1ce8f4fdcd0ccb339d02057/68747470733a2f2f7777772e6768696472612d7372652e6f72672f696d616765732f4748494452415f312e706e67" alt="Ghidra Logo" height="100"/>
   <img src="https://greatscottgadgets.com/images/gsglogosolid.png" alt="Great Scott Gadgets Logo" height="100"/>
   <img src="https://raw.githubusercontent.com/bettercap/media/master/logo.png" alt="Bettercap Logo" height="100"/>
-  <img src="https://camo.githubusercontent.com/7b5c1476d1b1ccfd7cb00e80154dbf4b8bc619c597ba1d6ff116b2d99d8e55a0/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f332f33382f4d65746173706c6f69745f6c6f676f5f616e645f776f72646d61726b2e706e67" alt="Metasploit Logo" height="100"/>
   <img src="https://camo.githubusercontent.com/0844b6474e2a3f6064cfc1dad6870789d23e85de208d3c6e5cc181ff470296d0/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f642f64662f57697265736861726b5f69636f6e2e737667" alt="Wireshark Logo" height="100"/>
 </div>
 
