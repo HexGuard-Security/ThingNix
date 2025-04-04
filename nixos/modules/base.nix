@@ -93,7 +93,7 @@
     # Avahi for mDNS/DNS-SD
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;  # Renamed from nssmdns to nssmdns4
     };
   };
   

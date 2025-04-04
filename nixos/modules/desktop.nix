@@ -11,28 +11,34 @@
     # Enable display manager
     displayManager = {
       lightdm.enable = true;
-      defaultSession = "xfce";
-      autoLogin = {
-        enable = true;
-        user = "thingnix";
-      };
     };
     
     # Enable XFCE desktop environment
     desktopManager.xfce.enable = true;
     
-    # Configure keyboard
-    layout = "us";
-    xkbOptions = "eurosign:e";
-    
-    # Enable touchpad support
-    libinput = {
+    # Configure keyboard (using updated xkb structure)
+    xkb = {
+      layout = "us";
+      options = "eurosign:e";
+    };
+  };
+  
+  # Display manager settings (moved from xserver as per new NixOS structure)
+  services.displayManager = {
+    defaultSession = "xfce";
+    autoLogin = {
       enable = true;
-      touchpad = {
-        tapping = true;
-        naturalScrolling = true;
-        disableWhileTyping = true;
-      };
+      user = "thingnix";
+    };
+  };
+  
+  # Touchpad configuration (moved from xserver as per new NixOS structure)
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      tapping = true;
+      naturalScrolling = true;
+      disableWhileTyping = true;
     };
   };
   
@@ -191,7 +197,7 @@
   };
   
   # Explicitly disable PulseAudio to avoid conflicts with PipeWire
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   
   # Enable bluetooth
   hardware.bluetooth = {

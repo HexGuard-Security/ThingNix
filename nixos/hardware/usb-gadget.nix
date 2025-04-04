@@ -19,7 +19,7 @@
   # Install USB gadget tools
   environment.systemPackages = with pkgs; [
     usbutils     # Tools for working with USB
-    libusb       # USB library
+    libusb1      # USB library (renamed from libusb)
     libcomposite # Tools for working with USB composite devices
   ];
   
