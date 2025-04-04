@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ThingNix Desktop Icon -->
+  <rect width="512" height="512" rx="60" fill="#1a1a1a"/>
+  
+  <!-- Circuit Board Background -->
+  <g stroke="#4a86e8" stroke-width="2" opacity="0.15">
+    <path d="M50 100 H 462" />
+    <path d="M50 150 H 462" />
+    <path d="M50 200 H 462" />
+    <path d="M50 250 H 462" />
+    <path d="M50 300 H 462" />
+    <path d="M50 350 H 462" />
+    <path d="M50 400 H 462" />
+    
+    <path d="M100 50 V 462" />
+    <path d="M150 50 V 462" />
+    <path d="M200 50 V 462" />
+    <path d="M250 50 V 462" />
+    <path d="M300 50 V 462" />
+    <path d="M350 50 V 462" />
+    <path d="M400 50 V 462" />
+  </g>
+  
+  <!-- Desktop Environment -->
+  <g>
+    <!-- Monitor -->
+    <rect x="130" y="120" width="252" height="180" rx="10" fill="#2c2c2c" stroke="#4a86e8" stroke-width="6"/>
+    <rect x="140" y="130" width="232" height="150" rx="5" fill="#0f0f0f"/>
+    
+    <!-- Monitor Stand -->
+    <rect x="230" y="300" width="52" height="20" rx="5" fill="#2c2c2c" stroke="#4a86e8" stroke-width="4"/>
+    <rect x="215" y="320" width="82" height="10" rx="3" fill="#4a86e8"/>
+    
+    <!-- Desktop UI Elements -->
+    <rect x="150" y="140" width="80" height="60" rx="4" fill="#4a86e8" opacity="0.8"/>
+    <rect x="240" y="140" width="122" height="20" rx="4" fill="#4a86e8" opacity="0.6"/>
+    <rect x="240" y="170" width="80" height="20" rx="4" fill="#4a86e8" opacity="0.6"/>
+    <rect x="240" y="200" width="100" height="20" rx="4" fill="#4a86e8" opacity="0.6"/>
+    <rect x="150" y="210" width="50" height="60" rx="4" fill="#50fa7b" opacity="0.7"/>
+    <rect x="210" y="230" width="70" height="40" rx="4" fill="#ff5555" opacity="0.7"/>
+    <rect x="290" y="230" width="72" height="40" rx="4" fill="#f1fa8c" opacity="0.7"/>
+  </g>
+  
+  <!-- Security Shield Overlay -->
+  <g transform="translate(350, 350) scale(0.6)">
+    <path d="M128 30 L 80 50 L 32 30 L 32 100 C 32 140 72 180 80 180 C 88 180 128 140 128 100 L 128 30 Z" 
+          fill="#2c2c2c" stroke="#ff5555" stroke-width="6"/>
+    <path d="M60 95 L 75 110 L 100 75" stroke="#50fa7b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Circuit Chip -->
+  <g transform="translate(160, 350) scale(0.5)">
+    <rect x="40" y="40" width="120" height="120" rx="10" fill="#2c2c2c" stroke="#4a86e8" stroke-width="6"/>
+    
+    <!-- Chip Connectors -->
+    <rect x="60" y="30" width="10" height="10" fill="#4a86e8"/>
+    <rect x="80" y="30" width="10" height="10" fill="#4a86e8"/>
+    <rect x="100" y="30" width="10" height="10" fill="#4a86e8"/>
+    <rect x="120" y="30" width="10" height="10" fill="#4a86e8"/>
+    
+    <rect x="60" y="160" width="10" height="10" fill="#4a86e8"/>
+    <rect x="80" y="160" width="10" height="10" fill="#4a86e8"/>
+    <rect x="100" y="160" width="10" height="10" fill="#4a86e8"/>
+    <rect x="120" y="160" width="10" height="10" fill="#4a86e8"/>
+    
+    <rect x="30" y="60" width="10" height="10" fill="#4a86e8"/>
+    <rect x="30" y="80" width="10" height="10" fill="#4a86e8"/>
+    <rect x="30" y="100" width="10" height="10" fill="#4a86e8"/>
+    <rect x="30" y="120" width="10" height="10" fill="#4a86e8"/>
+    
+    <rect x="160" y="60" width="10" height="10" fill="#4a86e8"/>
+    <rect x="160" y="80" width="10" height="10" fill="#4a86e8"/>
+    <rect x="160" y="100" width="10" height="10" fill="#4a86e8"/>
+    <rect x="160" y="120" width="10" height="10" fill="#4a86e8"/>
+    
+    <!-- Chip Interior Lines -->
+    <path d="M70 70 H 130" stroke="#4a86e8" stroke-width="3"/>
+    <path d="M70 90 H 130" stroke="#4a86e8" stroke-width="3"/>
+    <path d="M70 110 H 130" stroke="#4a86e8" stroke-width="3"/>
+    <path d="M70 130 H 130" stroke="#4a86e8" stroke-width="3"/>
+    
+    <path d="M70 70 V 130" stroke="#4a86e8" stroke-width="3"/>
+    <path d="M90 70 V 130" stroke="#4a86e8" stroke-width="3"/>
+    <path d="M110 70 V 130" stroke="#4a86e8" stroke-width="3"/>
+    <path d="M130 70 V 130" stroke="#4a86e8" stroke-width="3"/>
+  </g>
+  
+  <!-- ThingNix Text -->
+  <g>
+    <text x="256" y="450" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#4a86e8" text-anchor="middle">ThingNix</text>
+  </g>
+</svg>

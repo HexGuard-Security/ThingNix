@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ThingNix Bluetooth/Zigbee Icon -->
+  <rect width="512" height="512" rx="60" fill="#1a1a1a"/>
+  
+  <!-- Hexagonal Grid Background (Zigbee reference) -->
+  <g stroke="#4a86e8" stroke-width="1" opacity="0.15">
+    <!-- Horizontal Rows -->
+    <path d="M65 100 L 447 100" />
+    <path d="M65 156 L 447 156" />
+    <path d="M65 212 L 447 212" />
+    <path d="M65 268 L 447 268" />
+    <path d="M65 324 L 447 324" />
+    <path d="M65 380 L 447 380" />
+    <path d="M65 436 L 447 436" />
+    
+    <!-- Diagonal Lines - Top-Left to Bottom-Right -->
+    <path d="M65 100 L 447 436" />
+    <path d="M65 44 L 447 380" />
+    <path d="M121 44 L 447 324" />
+    <path d="M177 44 L 447 268" />
+    <path d="M233 44 L 447 212" />
+    <path d="M289 44 L 447 156" />
+    <path d="M345 44 L 447 100" />
+    
+    <!-- Diagonal Lines - Top-Right to Bottom-Left -->
+    <path d="M447 100 L 65 436" />
+    <path d="M447 44 L 121 436" />
+    <path d="M391 44 L 65 380" />
+    <path d="M335 44 L 65 324" />
+    <path d="M279 44 L 65 268" />
+    <path d="M223 44 L 65 212" />
+    <path d="M167 44 L 65 156" />
+  </g>
+  
+  <!-- Main Bluetooth Symbol -->
+  <g>
+    <path d="M256 100 L 336 180 L 276 240 L 336 300 L 256 380 L 256 240 L 256 100Z" 
+          fill="none" stroke="#4a86e8" stroke-width="12"/>
+    <path d="M176 180 L 256 240 L 176 300" 
+          fill="none" stroke="#4a86e8" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Connection Nodes -->
+  <g>
+    <circle cx="156" cy="180" r="15" fill="#ff5555"/>
+    <circle cx="356" cy="180" r="15" fill="#ff5555"/>
+    <circle cx="156" cy="300" r="15" fill="#ff5555"/>
+    <circle cx="356" cy="300" r="15" fill="#ff5555"/>
+    <circle cx="256" cy="120" r="15" fill="#ff5555"/>
+    <circle cx="256" cy="360" r="15" fill="#ff5555"/>
+    
+    <!-- Connection Lines -->
+    <path d="M156 180 L 156 300" stroke="#4a86e8" stroke-width="4" stroke-dasharray="8 8"/>
+    <path d="M356 180 L 356 300" stroke="#4a86e8" stroke-width="4" stroke-dasharray="8 8"/>
+    <path d="M156 180 L 256 120" stroke="#4a86e8" stroke-width="4" stroke-dasharray="8 8"/>
+    <path d="M356 180 L 256 120" stroke="#4a86e8" stroke-width="4" stroke-dasharray="8 8"/>
+    <path d="M156 300 L 256 360" stroke="#4a86e8" stroke-width="4" stroke-dasharray="8 8"/>
+    <path d="M356 300 L 256 360" stroke="#4a86e8" stroke-width="4" stroke-dasharray="8 8"/>
+  </g>
+  
+  <!-- Signal Waves -->
+  <g stroke="#50fa7b" stroke-width="3" fill="none" opacity="0.8">
+    <path d="M416 240 C 436 220 436 260 416 240" />
+    <path d="M390 240 C 420 210 420 270 390 240" />
+    <path d="M370 240 C 410 200 410 280 370 240" />
+  </g>
+  
+  <!-- ZigBee Symbol (stylized Z) -->
+  <g transform="translate(100, 240) scale(0.6)">
+    <path d="M60 40 L 120 40 L 60 80 L 120 80" stroke="#ff5555" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>

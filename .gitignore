@@ -97,3 +97,15 @@ htmlcov/
 # Documentation
 docs/_build/
 site/
+
+# Nix specific
+result
+result-*
+.direnv/
+.pre-commit-config.yaml
+
+# Generated PNG icons
+assets/icons/png/
+
+# Cachix
+.cachix/

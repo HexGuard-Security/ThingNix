@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ThingNix Utilities Icon -->
+  <rect width="512" height="512" rx="60" fill="#1a1a1a"/>
+  
+  <!-- Tool Grid Background -->
+  <g stroke="#4a86e8" stroke-width="1" opacity="0.1">
+    <path d="M50 50 H 462" />
+    <path d="M50 114 H 462" />
+    <path d="M50 178 H 462" />
+    <path d="M50 242 H 462" />
+    <path d="M50 306 H 462" />
+    <path d="M50 370 H 462" />
+    <path d="M50 434 H 462" />
+    
+    <path d="M50 50 V 462" />
+    <path d="M114 50 V 462" />
+    <path d="M178 50 V 462" />
+    <path d="M242 50 V 462" />
+    <path d="M306 50 V 462" />
+    <path d="M370 50 V 462" />
+    <path d="M434 50 V 462" />
+  </g>
+  
+  <!-- Gear Symbol (primary) -->
+  <g>
+    <circle cx="256" cy="256" r="80" fill="#2c2c2c" stroke="#4a86e8" stroke-width="6"/>
+    <circle cx="256" cy="256" r="30" fill="#1a1a1a" stroke="#4a86e8" stroke-width="4"/>
+    
+    <!-- Gear Teeth -->
+    <g fill="#4a86e8">
+      <rect x="252" y="146" width="8" height="30" rx="4" />
+      <rect x="252" y="336" width="8" height="30" rx="4" />
+      <rect x="146" y="252" width="30" height="8" rx="4" />
+      <rect x="336" y="252" width="30" height="8" rx="4" />
+      
+      <!-- Diagonal Teeth -->
+      <rect x="176" y="176" width="30" height="8" rx="4" transform="rotate(45 176 176)" />
+      <rect x="333" y="333" width="30" height="8" rx="4" transform="rotate(45 333 333)" />
+      <rect x="176" y="333" width="30" height="8" rx="4" transform="rotate(-45 176 333)" />
+      <rect x="333" y="176" width="30" height="8" rx="4" transform="rotate(-45 333 176)" />
+    </g>
+  </g>
+  
+  <!-- Wrench Icon -->
+  <g transform="translate(110, 110) scale(0.4) rotate(-15)">
+    <path d="M80 50 C 50 50 30 80 40 120 L 100 180 C 110 190 125 190 135 180 L 180 135 C 190 125 190 110 180 100 L 120 40 C 80 30 50 50 50 80 Z" 
+          fill="#2c2c2c" stroke="#ff5555" stroke-width="10"/>
+    <circle cx="80" cy="80" r="15" fill="#1a1a1a"/>
+  </g>
+  
+  <!-- Terminal Icon -->
+  <g transform="translate(290, 320) scale(0.4)">
+    <rect x="20" y="20" width="160" height="120" rx="10" fill="#2c2c2c" stroke="#50fa7b" stroke-width="6"/>
+    <path d="M40 50 L 60 70 L 40 90" stroke="#50fa7b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M80 90 L 120 90" stroke="#50fa7b" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Magnifying Glass -->
+  <g transform="translate(320, 130) scale(0.35)">
+    <circle cx="80" cy="80" r="50" fill="none" stroke="#ff5555" stroke-width="10"/>
+    <path d="M120 120 L 150 150" stroke="#ff5555" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Code Brackets Icon -->
+  <g transform="translate(110, 330) scale(0.4)">
+    <path d="M50 80 L 20 100 L 50 120" stroke="#4a86e8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M150 80 L 180 100 L 150 120" stroke="#4a86e8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M70 140 L 130 60" stroke="#4a86e8" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>

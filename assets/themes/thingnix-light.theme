@@ -1,0 +1,39 @@
+# ThingNix Light Theme
+# Replace this file with actual theme definition
+# This is a placeholder for the actual theme file
+
+[Theme]
+Name=ThingNix Light
+Comment=Light theme alternative for ThingNix
+Encoding=UTF-8
+
+[Palette]
+Background=#f8f8f8
+Foreground=#2c2c2c
+Selection=#4a86e8
+AccentColor=#e83535
+SuccessColor=#26b054
+WarningColor=#e08a2a
+ErrorColor=#e83535
+
+[Terminal]
+Background=#ffffff
+Foreground=#2c2c2c
+Cursor=#4a86e8
+Selection=#4a86e8
+Color0=#e9e9e9
+Color1=#e83535
+Color2=#26b054
+Color3=#d9b726
+Color4=#4a86e8
+Color5=#9858d1
+Color6=#3aa5d1
+Color7=#2c2c2c
+Color8=#b1b1b1
+Color9=#ff4a4a
+Color10=#3ad968
+Color11=#f1ca3a
+Color12=#62a0fb
+Color13=#b57aef
+Color14=#50c5f1
+Color15=#000000

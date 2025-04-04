@@ -1,0 +1,39 @@
+# ThingNix Dark Theme
+# Replace this file with actual theme definition
+# This is a placeholder for the actual theme file
+
+[Theme]
+Name=ThingNix Dark
+Comment=Default dark theme for ThingNix
+Encoding=UTF-8
+
+[Palette]
+Background=#121212
+Foreground=#f8f8f8
+Selection=#4a86e8
+AccentColor=#ff5555
+SuccessColor=#50fa7b
+WarningColor=#ffb86c
+ErrorColor=#ff5555
+
+[Terminal]
+Background=#1a1a1a
+Foreground=#f8f8f8
+Cursor=#4a86e8
+Selection=#4a86e8
+Color0=#2c2c2c
+Color1=#ff5555
+Color2=#50fa7b
+Color3=#f1fa8c
+Color4=#4a86e8
+Color5=#bd93f9
+Color6=#8be9fd
+Color7=#f8f8f8
+Color8=#5a5a5a
+Color9=#ff6e6e
+Color10=#69ff94
+Color11=#ffffa5
+Color12=#6f9aeb
+Color13=#d6acff
+Color14=#a4f1ff
+Color15=#ffffff

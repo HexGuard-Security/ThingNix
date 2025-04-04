@@ -179,6 +179,43 @@ We particularly need testers with:
 - JTAG/SWD debugging hardware
 - Zigbee/BLE sniffers
 
+## Community & Design Contributions
+
+ThingNix features a growing collection of custom assets including icons, wallpapers, and themes:
+
+<div align="center">
+  <img src="assets/icons/thingnix-icon.svg" alt="ThingNix Icon" height="100"/>
+  <img src="assets/icons/tools/network-icon.svg" alt="Network Tools Icon" height="100"/>
+  <img src="assets/icons/tools/firmware-icon.svg" alt="Firmware Tools Icon" height="100"/>
+  <img src="assets/icons/tools/sdr-icon.svg" alt="SDR Tools Icon" height="100"/>
+</div>
+
+### We're Looking for Design Contributors!
+
+Are you skilled with:
+- Vector graphics design (SVG)
+- Inkscape or other open-source design tools
+- UI/UX design for Linux environments
+- GNU/Linux theming
+
+Join our community and help shape the visual identity of ThingNix! We welcome contributions for:
+- Additional wallpapers
+- Tool-specific icons
+- UI theme improvements
+- Logo variations
+- Documentation illustrations
+
+See our [contribution guidelines](CONTRIBUTING.md) to get started or join our [Discord community](https://discord.gg/hexguard).
+
+## Customization
+
+ThingNix is designed to be easily customizable. See [CUSTOMIZATION.md](docs/CUSTOMIZATION.md) for details on how to:
+
+- Add your own tools and packages
+- Customize the desktop environment
+- Configure hardware support
+- Create custom modules
+
 ## Tool Inventory
 
 ThingNix comes with a comprehensive suite of pre-installed security tools. For a complete list, see [TOOLS.md](docs/TOOLS.md).
@@ -195,16 +232,6 @@ ThingNix is designed to work with common IoT pentesting hardware:
 - Zigbee/BLE sniffers
 
 See [HARDWARE.md](docs/HARDWARE.md) for detailed compatibility information.
-
-## Customization
-
-ThingNix is designed to be customizable. You can:
-
-- Replace the default wallpaper by editing `assets/wallpapers/thingnix-wallpaper.png`
-- Use one of the included themes or create your own in `assets/themes/`
-- Customize the icon set in `assets/icons/`
-
-For more detailed customization instructions, see [CUSTOMIZATION.md](docs/CUSTOMIZATION.md).
 
 ## Building
 
