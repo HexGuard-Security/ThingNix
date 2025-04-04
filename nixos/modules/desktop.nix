@@ -27,19 +27,19 @@
       layout = "us";
       options = "eurosign:e";
     };
+    
+    # Touchpad configuration moved inside xserver for NixOS 23.11 compatibility
+    libinput = {
+      enable = true;
+      touchpad = {
+        tapping = true;
+        naturalScrolling = true;
+        disableWhileTyping = true;
+      };
+    };
   };
   
   # Remove standalone services.displayManager as it doesn't exist in NixOS 23.11
-  
-  # Touchpad configuration (moved from xserver as per new NixOS structure)
-  services.libinput = {
-    enable = true;
-    touchpad = {
-      tapping = true;
-      naturalScrolling = true;
-      disableWhileTyping = true;
-    };
-  };
   
   # Install desktop applications and utilities
   environment.systemPackages = with pkgs; [
