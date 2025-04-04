@@ -113,9 +113,6 @@
     
     # Network analysis
     tcpdump.enable = true;
-    
-    # Virtualization
-    libvirtd.enable = true;
   };
   
   # Add virtual bridge for isolated network testing
