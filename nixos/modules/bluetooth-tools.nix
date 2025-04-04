@@ -72,7 +72,7 @@
     
     (writeShellScriptBin "zigbee-scan" ''
       #!/bin/sh
-      # Scan for Zigbee devices using KillerBee
+      # Scan for Zigbee devices
       
       if [ $# -lt 1 ]; then
         echo "Usage: zigbee-scan <interface>"
@@ -83,7 +83,7 @@
       INTERFACE=$1
       
       echo "Scanning for Zigbee devices on $INTERFACE..."
-      ${killerbee}/bin/zbstumbler -i $INTERFACE
+      ${pkgs.killerbee}/bin/zbstumbler -i $INTERFACE
     '')
     
     (writeShellScriptBin "ble-info" ''
@@ -99,9 +99,9 @@
       MAC=$1
       
       echo "Getting information for device $MAC..."
-      ${bluez}/bin/gatttool -b $MAC --primary
+      ${pkgs.bluez}/bin/gatttool -b $MAC --primary
       echo "\nServices discovered. Retrieving characteristics..."
-      ${bluez}/bin/gatttool -b $MAC --characteristics
+      ${pkgs.bluez}/bin/gatttool -b $MAC --characteristics
     '')
     
     (writeShellScriptBin "bt-pair-crack" ''
@@ -117,7 +117,7 @@
       PCAP=$1
       
       echo "Analyzing Bluetooth pairing in $PCAP..."
-      ${crackle}/bin/crackle -i $PCAP -o decrypted.pcap
+      ${pkgs.crackle}/bin/crackle -i $PCAP -o decrypted.pcap
     '')
   ];
   
@@ -171,7 +171,7 @@
     Type=Application
     Name=Bluetooth Reset
     Comment=Reset Bluetooth adapter at startup
-    Exec=sh -c "sleep 3 && ${bluez}/bin/hciconfig hci0 reset"
+    Exec=sh -c "sleep 3 && ${pkgs.bluez}/bin/hciconfig hci0 reset"
     Terminal=false
     Categories=System;
     NoDisplay=true
