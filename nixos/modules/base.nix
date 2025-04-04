@@ -12,38 +12,38 @@
     git
     vim
     nano
-    htop
-    btop
-    lsof
-    tree
+    # htop - commented out for build stability
+    # btop - commented out for build stability
+    # lsof - commented out for build stability
+    # tree - commented out for build stability
     file
     unzip
     zip
     pciutils
     usbutils
     nmap
-    tcpdump
-    netcat
-    inetutils
-    iputils
-    traceroute
-    whois
+    # tcpdump - commented out for build stability
+    # netcat - commented out for build stability
+    # inetutils - commented out for build stability
+    # iputils - commented out for build stability
+    # traceroute - commented out for build stability
+    # whois - commented out for build stability
     
     # Shell environment
     zsh
-    oh-my-zsh
-    tmux
-    fzf
+    # oh-my-zsh - commented out for build stability
+    # tmux - commented out for build stability
+    # fzf - commented out for build stability
     
     # Development utilities
-    gcc
-    gnumake
+    # gcc - commented out for build stability
+    # gnumake - commented out for build stability
     python3
-    python3Packages.pip
-    python3Packages.virtualenv
+    # python3Packages.pip - commented out for build stability
+    # python3Packages.virtualenv - commented out for build stability
     
     # Editor
-    neovim
+    # neovim - commented out for build stability
   ];
   
   # Zsh as default shell
@@ -101,21 +101,21 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-emoji
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      mplus-outline-fonts.githubRelease
-      dina-font
-      proggyfonts
-      font-awesome
-      hack-font
+      # noto-fonts-emoji - commented out for build stability
+      # liberation_ttf - commented out for build stability
+      # fira-code - commented out for build stability
+      # fira-code-symbols - commented out for build stability
+      # mplus-outline-fonts.githubRelease - commented out for build stability
+      # dina-font - commented out for build stability
+      # proggyfonts - commented out for build stability
+      # font-awesome - commented out for build stability
+      # hack-font - commented out for build stability
     ];
     fontconfig = {
       defaultFonts = {
-        monospace = [ "Hack" "Fira Code" ];
-        sansSerif = [ "Noto Sans" "Liberation Sans" ];
-        serif = [ "Noto Serif" "Liberation Serif" ];
+        monospace = [ "Noto Sans Mono" ];
+        sansSerif = [ "Noto Sans" ];
+        serif = [ "Noto Serif" ];
       };
     };
   };

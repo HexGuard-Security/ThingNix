@@ -45,56 +45,56 @@
   # Install desktop applications and utilities
   environment.systemPackages = with pkgs; [
     # Terminal emulators
-    alacritty
-    terminator
+    # alacritty - commented out for build stability
+    # terminator - commented out for build stability
     
     # Web browsers
     firefox
-    chromium
+    # chromium - commented out for build stability
     
     # File managers
-    thunar
-    pcmanfm
+    # thunar - commented out for build stability
+    # pcmanfm - commented out for build stability
     
     # Terminal tools with GUI
-    gnome.gnome-terminal
-    xfce.xfce4-terminal
+    # gnome.gnome-terminal - commented out for build stability
+    # xfce.xfce4-terminal - commented out for build stability
     
     # Text editors and IDEs
-    vscode
-    geany
+    # vscode - commented out for build stability
+    # geany - commented out for build stability
     
     # Network tools with GUI
-    wireshark
-    networkmanagerapplet
+    # wireshark - commented out for build stability
+    # networkmanagerapplet - commented out for build stability
     
     # System monitoring
-    xfce.xfce4-taskmanager
+    # xfce.xfce4-taskmanager - commented out for build stability
     
     # Security tools with GUI
-    keepassxc
+    # keepassxc - commented out for build stability
     
     # Utility applications
-    flameshot # Screenshot tool
-    vlc       # Media player
-    arandr    # Screen layout configuration
-    pavucontrol # Audio control
+    # flameshot - commented out for build stability
+    # vlc - commented out for build stability
+    # arandr - commented out for build stability
+    # pavucontrol - commented out for build stability
     
     # PDF viewer
-    evince
+    # evince - commented out for build stability
     
     # Theming
-    arc-theme
-    papirus-icon-theme
-    gnome.adwaita-icon-theme
+    # arc-theme - commented out for build stability
+    # papirus-icon-theme - commented out for build stability
+    # gnome.adwaita-icon-theme - commented out for build stability
     
     # Clipboard manager
-    xfce.xfce4-clipman-plugin
+    # xfce.xfce4-clipman-plugin - commented out for build stability
     
     # System tray utilities
-    networkmanagerapplet
-    pasystray
-    blueman
+    # networkmanagerapplet - commented out for build stability
+    # pasystray - commented out for build stability
+    # blueman - commented out for build stability
   ];
   
   # XFCE configuration
