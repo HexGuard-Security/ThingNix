@@ -110,9 +110,6 @@
     
     # For web proxies and interceptors
     tor.enable = true;
-    
-    # Network analysis
-    tcpdump.enable = true;
   };
   
   # Add virtual bridge for isolated network testing
