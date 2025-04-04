@@ -12,7 +12,7 @@ A reproducible NixOS-based operating system for IoT penetration testing and hard
   <img src="https://nixos.org/logo/nixos-logo-only-hires.png" alt="NixOS Logo" height="100"/>
   <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Open-source-hardware-logo.svg" alt="Open Source Hardware Logo" height="100"/>
   <img src="https://camo.githubusercontent.com/f4dde6518bf93a3a17b3b12c9c747d79c0e02984c1ce8f4fdcd0ccb339d02057/68747470733a2f2f7777772e6768696472612d7372652e6f72672f696d616765732f4748494452415f312e706e67" alt="Ghidra Logo" height="100"/>
-  <img src="https://www.rtl-sdr.com/wp-content/uploads/2013/04/SDRSharp1.png" alt="RTL-SDR Logo" height="100"/>
+  <img src="https://www.realtek.com/imgs/realtek_logo.png" alt="RTL-SDR Logo" height="100"/>
 </div>
 
 ## Overview
@@ -34,8 +34,8 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 ### Firmware Analysis
 <div align="center">
   <img src="https://www.ghidra-sre.org/images/GHIDRA_1.png" alt="Ghidra" height="50"/>
-  <img src="https://camo.githubusercontent.com/77da1459712b5504d6ac8a846de5dd629a866aa89f3c399cdfee49a644ca4b06/68747470733a2f2f7777772e72616461726532746563686e69717565732e636f6d2f696d616765732f7261645f6c6f676f2e706e67" alt="Radare2" height="50"/>
-  <img src="https://www.flashrom.org/images/0/04/Flashrom.svg" alt="Flashrom" height="50"/>
+  <img src="https://rada.re/n/r2logo.png" alt="Radare2" height="50"/>
+  <img src="https://flashrom.org/_images/flashrom_logo.png" alt="Flashrom" height="50"/>
 </div>
 
 - Binwalk
@@ -46,8 +46,8 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 
 ### RF/SDR
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Gnuradio_logo_icon.png" alt="GNU Radio" height="50"/>
-  <img src="https://gqrx.dk/wp-content/uploads/2016/06/gqrx-logo.png" alt="GQRX" height="50"/>
+  <img src="https://www.gnuradio.org/gnuradio_logo_glyphs_as_paths.svg" alt="GNU Radio" height="50"/>
+  <img src="https://raw.githubusercontent.com/gqrx-sdr/gqrx/refs/heads/master/new_logo/PNG/horizontal%20color.png" alt="GQRX" height="50"/>
 </div>
 
 - RTL-SDR
@@ -65,9 +65,9 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 
 ### Network/Exploitation
 <div align="center">
-  <img src="https://nmap.org/images/nmap-logo-256x256.png" alt="Nmap" height="50"/>
-  <img src="https://www.metasploit.com/includes/images/favicon.ico" alt="Metasploit" height="50"/>
-  <img src="https://www.bettercap.org/assets/favicons/android-chrome-512x512.png" alt="Bettercap" height="50"/>
+  <img src="https://www.uvexplorer.com/wp-content/uploads/2023/07/nmap-logo-256x256-1-150x150.png" alt="Nmap" height="50"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Metasploit_logo_and_wordmark.png" alt="Metasploit" height="50"/>
+  <img src="https://raw.githubusercontent.com/bettercap/media/master/logo.png" alt="Bettercap" height="50"/>
 </div>
 
 - Nmap
@@ -78,9 +78,9 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 
 ### Utilities
 <div align="center">
-  <img src="https://www.wireshark.org/assets/theme-2015/images/wireshark_logo.png" alt="Wireshark" height="50"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Qt_logo_2016.svg/1200px-Qt_logo_2016.svg.png" alt="QEMU" height="50"/>
-  <img src="https://sigrok.org/wiki/images/f/fe/Pulseview-logo.png" alt="Sigrok" height="50"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Wireshark_Logo.svg" alt="Wireshark" height="50"/>
+  <img src="https://en.wikipedia.org/wiki/File:Qemu_logo.svg" alt="QEMU" height="50"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Sigrok_logo.svg" alt="Sigrok" height="50"/>
 </div>
 
 - Python3
