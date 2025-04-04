@@ -105,10 +105,10 @@
       mkdir -p "$OUTPUT_DIR"
       
       echo "Extracting firmware $FIRMWARE to $OUTPUT_DIR..."
-      ${binwalk}/bin/binwalk -e -C "$OUTPUT_DIR" "$FIRMWARE"
+      ${pkgs.binwalk}/bin/binwalk -e -C "$OUTPUT_DIR" "$FIRMWARE"
       
       echo "Creating firmware summary..."
-      ${binwalk}/bin/binwalk "$FIRMWARE" > "$OUTPUT_DIR/firmware-summary.txt"
+      ${pkgs.binwalk}/bin/binwalk "$FIRMWARE" > "$OUTPUT_DIR/firmware-summary.txt"
       
       echo "Done. Results saved to $OUTPUT_DIR"
     '')
@@ -129,22 +129,22 @@
       
       case "$ARCH" in
         arm)
-          QEMU=${qemu}/bin/qemu-arm
+          QEMU=${pkgs.qemu}/bin/qemu-arm
           ;;
         arm64)
-          QEMU=${qemu}/bin/qemu-aarch64
+          QEMU=${pkgs.qemu}/bin/qemu-aarch64
           ;;
         mips)
-          QEMU=${qemu}/bin/qemu-mips
+          QEMU=${pkgs.qemu}/bin/qemu-mips
           ;;
         mipsel)
-          QEMU=${qemu}/bin/qemu-mipsel
+          QEMU=${pkgs.qemu}/bin/qemu-mipsel
           ;;
         ppc)
-          QEMU=${qemu}/bin/qemu-ppc
+          QEMU=${pkgs.qemu}/bin/qemu-ppc
           ;;
         x86)
-          QEMU=${qemu}/bin/qemu-i386
+          QEMU=${pkgs.qemu}/bin/qemu-i386
           ;;
         *)
           echo "Unsupported architecture: $ARCH"
