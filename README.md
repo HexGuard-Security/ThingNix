@@ -191,17 +191,19 @@ ThingNix features a growing collection of custom assets including icons, wallpap
 </div>
 
 <div align="center">
-  <img src="assets/wallpapers/wallpaper-01.png" alt="ThingNix Wallpaper 1" height="150"/>
-  <img src="assets/wallpapers/wallpaper-02.png" alt="ThingNix Wallpaper 2" height="150"/>
+  <img src="assets/wallpapers/wallpaper-01.png" alt="ThingNix Wallpaper 1" height="420"/>
 </div>
-
 <div align="center">
-  <img src="assets/wallpapers/wallpaper-03.png" alt="ThingNix Wallpaper 3" height="150"/>
-  <img src="assets/wallpapers/wallpaper-04.png" alt="ThingNix Wallpaper 4" height="150"/>
+  <img src="assets/wallpapers/wallpaper-02.png" alt="ThingNix Wallpaper 2" height="420"/>
 </div>
-
 <div align="center">
-  <img src="assets/wallpapers/wallpaper-05.png" alt="ThingNix Wallpaper 5" height="150"/>
+  <img src="assets/wallpapers/wallpaper-03.png" alt="ThingNix Wallpaper 3" height="420"/>
+</div>
+<div align="center">
+  <img src="assets/wallpapers/wallpaper-04.png" alt="ThingNix Wallpaper 4" height="420"/>
+</div>
+<div align="center">
+  <img src="assets/wallpapers/wallpaper-05.png" alt="ThingNix Wallpaper 5" height="420"/>
 </div>
 
 ### We're Looking for Design Contributors!
