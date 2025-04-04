@@ -169,7 +169,7 @@ Building on Windows requires WSL2 (Windows Subsystem for Linux) with a Linux dis
 **To become a tester:**
 
 1. Star and watch this repository for updates
-2. Join our [Discord server](https://discord.gg/thingnix) to connect with other testers
+2. Join our [Discord server](https://discord.gg/j2fFUYT8h7) to connect with other testers
 3. Check the [Issues](https://github.com/HexGuard-Security/ThingNix/issues) page for known issues and testing tasks
 4. Report your findings by creating new issues with the "testing" label
 
@@ -190,6 +190,12 @@ ThingNix features a growing collection of custom assets including icons, wallpap
   <img src="assets/icons/tools/sdr-icon.svg" alt="SDR Tools Icon" height="100"/>
 </div>
 
+<div align="center">
+  <img src="assets/wallpapers/wallpaper-01.png" alt="ThingNix Wallpaper 1" height="150"/>
+  <img src="assets/wallpapers/wallpaper-02.png" alt="ThingNix Wallpaper 2" height="150"/>
+  <img src="assets/wallpapers/wallpaper-03.png" alt="ThingNix Wallpaper 3" height="150"/>
+</div>
+
 ### We're Looking for Design Contributors!
 
 Are you skilled with:
@@ -205,7 +211,7 @@ Join our community and help shape the visual identity of ThingNix! We welcome co
 - Logo variations
 - Documentation illustrations
 
-See our [contribution guidelines](CONTRIBUTING.md) to get started or join our [Discord community](https://discord.gg/hexguard).
+See our [contribution guidelines](CONTRIBUTING.md) to get started or join our [Discord community](https://discord.gg/j2fFUYT8h7).
 
 ## Customization
 
@@ -279,11 +285,19 @@ For tools not available in nixpkgs or issues with current packages, please submi
 - Add USB gadget attack capabilities
 - Release first ISO image
 
-## Community
+## Contact & Community
 
-[![Discord](https://img.shields.io/discord/1234567890?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/thingnix)
-[![Twitter Follow](https://img.shields.io/twitter/follow/HexGuardSec?style=social)](https://twitter.com/HexGuardSec)
+- Website: [hexguard.net](https://hexguard.net)
+- GitHub: [HexGuard-Security/ThingNix](https://github.com/HexGuard-Security/ThingNix)
+- Discord: [Join our community](https://discord.gg/j2fFUYT8h7)
+- Twitter: [@HexGuardSec](https://twitter.com/HexGuardSec)
 
 ## License
 
 ThingNix is released under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+  <p>Developed and maintained by <a href="https://hexguard.net">HexGuard Security</a></p>
+</div>
