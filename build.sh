@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 # Configuration
 BUILD_DIR="./build"
 CACHE_DIR="./cache"
-VERSION="0.1.0-alpha20"  # Hardcoded version for now
+VERSION="v0.1.0-alpha50"  # Hardcoded version for our next tag
 DEFAULT_ARCH="x86_64-linux"
 SUPPORTED_ARCHS=("x86_64-linux" "aarch64-linux")
 ISO_NAME="thingnix"

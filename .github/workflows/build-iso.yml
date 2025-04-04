@@ -48,7 +48,9 @@ jobs:
             ./build.sh --arch x86_64-linux
             echo "Creating x86_64 checksum..."
             cd build
-            sha256sum thingnix-*-x86_64-*.iso > thingnix-x86_64.sha256
+            echo "Files in build directory:"
+            ls -la
+            sha256sum thingnix-v0.1.0-alpha50-x86_64_linux.iso > thingnix-x86_64.sha256 || echo "Warning: No x86_64 ISO found for checksum"
             cd ..
           fi
           
@@ -57,7 +59,9 @@ jobs:
             ./build.sh --arch aarch64-linux
             echo "Creating aarch64 checksum..."
             cd build
-            sha256sum thingnix-*-aarch64-*.iso > thingnix-aarch64.sha256
+            echo "Files in build directory:"
+            ls -la
+            sha256sum thingnix-v0.1.0-alpha50-aarch64_linux.iso > thingnix-aarch64.sha256 || echo "Warning: No aarch64 ISO found for checksum"
             cd ..
           fi
       
@@ -69,8 +73,8 @@ jobs:
           draft: true
           prerelease: true
           files: |
-            build/thingnix-*-x86_64-*.iso
-            build/thingnix-*-aarch64-*.iso
+            build/thingnix-v0.1.0-alpha50-x86_64_linux.iso
+            build/thingnix-v0.1.0-alpha50-aarch64_linux.iso
             build/thingnix-x86_64.sha256
             build/thingnix-aarch64.sha256
           body: |
