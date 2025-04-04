@@ -59,7 +59,7 @@
             modules = [
               ./nixos/configurations/thingnix/default.nix
               {
-                nixpkgs.config.allowUnfree = true;
+                # Remove nixpkgs.config.allowUnfree from here since it's already defined in default.nix
                 # Use a more stable kernel - use mkForce to override the definition in default.nix
                 boot.kernelPackages = nixpkgs.lib.mkForce pkgs.linuxPackages_6_1;
                 # Explicitly set ISO image properties
