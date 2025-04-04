@@ -120,12 +120,8 @@
     };
   };
   
-  # Sound configuration using the newer approach
-  # Removed sound.enable as it's deprecated
-  hardware.alsa = {
-    enable = true;
-    # Removed support32Bit as it's not a valid option for ALSA
-  };
+  # Sound configuration handled in desktop.nix via PipeWire
+  # Removing hardware.alsa configuration here to avoid conflicts
   
   # Enable dconf
   programs.dconf.enable = true;

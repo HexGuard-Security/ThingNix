@@ -183,7 +183,7 @@
   # Audio configuration - using PipeWire instead of PulseAudio
   # Removed sound.enable as it's deprecated
   services.pipewire = {
-    enable = true;
+    enable = lib.mkForce true;  # Force enable to override alsa.nix's setting
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;  # PulseAudio compatibility
