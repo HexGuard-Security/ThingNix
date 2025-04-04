@@ -3,7 +3,7 @@
 {
   # Bluetooth and BLE (Bluetooth Low Energy) tools for IoT security testing
   
-  # Install Bluetooth-related packages
+  # Install Bluetooth-related packages and helper scripts
   environment.systemPackages = with pkgs; [
     # Core Bluetooth tools
     bluez
@@ -52,27 +52,8 @@
     
     # Documentation
     bluez-docs
-  ];
-  
-  # Enable Bluetooth services
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        ControllerMode = "dual";
-        FastConnectable = true;
-        JustWorksRepairing = "always";
-        Privacy = "device";
-      };
-    };
-  };
-  
-  # Bluetooth service configuration for security testing
-  services.blueman.enable = true;
-  
-  # Create helpful scripts for Bluetooth analysis
-  environment.systemPackages = with pkgs; [
+    
+    # Helper scripts for Bluetooth analysis
     (writeShellScriptBin "ble-scan" ''
       #!/bin/sh
       # Scan for BLE devices and display detailed information
@@ -139,6 +120,23 @@
       ${crackle}/bin/crackle -i $PCAP -o decrypted.pcap
     '')
   ];
+  
+  # Enable Bluetooth services
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        ControllerMode = "dual";
+        FastConnectable = true;
+        JustWorksRepairing = "always";
+        Privacy = "device";
+      };
+    };
+  };
+  
+  # Bluetooth service configuration for security testing
+  services.blueman.enable = true;
   
   # Create workshop directory structure for Bluetooth analysis
   system.activationScripts.bluetoothWorkshop = ''
