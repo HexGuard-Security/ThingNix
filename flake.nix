@@ -1,4 +1,4 @@
-{
+{ 
   description = "ThingNix: A NixOS-based OS for IoT penetration testing and hardware hacking";
 
   inputs = {
@@ -55,7 +55,7 @@
           pkgs = pkgsFor system;
         in {
           iso = nixos-generators.nixosGenerate {
-            inherit system pkgs; 
+            inherit pkgs; 
             modules = [
               ./nixos/configurations/thingnix/default.nix
               {
