@@ -59,7 +59,7 @@
       # Scan for BLE devices and display detailed information
       
       echo "Scanning for BLE devices..."
-      ${bluez}/bin/hcitool lescan --duplicate
+      ${pkgs.bluez}/bin/hcitool lescan --duplicate
     '')
     
     (writeShellScriptBin "bt-monitor" ''
@@ -67,7 +67,7 @@
       # Monitor all Bluetooth traffic
       
       echo "Starting Bluetooth traffic monitor..."
-      ${bluez}/bin/btmon
+      ${pkgs.bluez}/bin/btmon
     '')
     
     (writeShellScriptBin "zigbee-scan" ''
