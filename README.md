@@ -79,8 +79,8 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 
 ### Bluetooth/BLE/Zigbee
 <div align="left">
-  <img src="https://ubertooth.readthedocs.io/en/latest/_static/ubertooth-logo.png" alt="Ubertooth" height="50"/>
-  <img src="https://crackle.readthedocs.io/en/latest/_static/crackle-logo.png" alt="Crackle" height="50"/>
+  <img src="https://greatscottgadgets.com/images/gsglogosolid.png" alt="Great Scott Gadgets" height="50"/>
+  <img src="https://camo.githubusercontent.com/9821c0a7122b8b41fe901586ad3efe5e5622687f61a73e0f51e88ac0833c6fbc/68747470733a2f2f7261772e6769746875622e636f6d2f6d696b657279616e2f637261636b6c652f6c6f676f2f637261636b6c652e706e67" alt="Crackle" height="50"/>
 </div>
 
 | Tool | Version | Description |
@@ -121,8 +121,8 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 
 ### Hardware Tools
 <div align="left">
-  <img src="https://openocd.org/images/openocd-logo.png" alt="OpenOCD" height="50"/>
-  <img src="https://sigrok.org/img/logo-sigrok-256x256.png" alt="Sigrok" height="50"/>
+  <img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/Raspberry_Debugprobe_512.png" alt="OpenOCD" height="50"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Sigrok_logo.svg" alt="Sigrok" height="50"/>
 </div>
 
 | Tool | Version | Description |
