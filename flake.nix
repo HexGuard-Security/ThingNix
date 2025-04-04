@@ -2,14 +2,14 @@
   description = "ThingNix: A NixOS-based OS for IoT penetration testing and hardware hacking";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     
     # Hardware specific configurations
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     
     # Home-manager for user environment configuration
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
@@ -28,11 +28,13 @@
       # Function to get pkgs for a specific system
       pkgsFor = system: import nixpkgs {
         inherit system;
-        config.allowUnfree = true; # Some pentesting tools may be unfree
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [];
+        };
       };
     in {
       nixosConfigurations = {
-        # Basic ISO configuration
         thingnix = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
@@ -48,7 +50,6 @@
         };
       };
 
-      # ISO images
       packages = forAllSystems (system: {
         iso = nixos-generators.nixosGenerate {
           inherit system;
@@ -56,6 +57,7 @@
             ./nixos/configurations/thingnix/default.nix
             {
               nixpkgs.config.allowUnfree = true;
+              boot.kernelPackages = pkgs: pkgs.linuxPackages_6_1;
             }
           ];
           format = "iso";
@@ -65,7 +67,6 @@
         };
       });
 
-      # Development shells
       devShells = forAllSystems (system:
         let pkgs = pkgsFor system;
         in {
