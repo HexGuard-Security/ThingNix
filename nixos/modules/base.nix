@@ -93,7 +93,8 @@
     # Avahi for mDNS/DNS-SD
     avahi = {
       enable = true;
-      nssmdns4 = true;  # Renamed from nssmdns to nssmdns4
+      # nssmdns4 option doesn't exist in NixOS 23.11, use nssmdns instead
+      nssmdns = true;  # For NixOS 23.11 compatibility
     };
   };
   
