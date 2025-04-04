@@ -43,65 +43,69 @@ jobs:
           # Set environment variables for unfree packages
           export NIXPKGS_ALLOW_UNFREE=1
           
-          if [[ "${{ github.event_name }}" != "workflow_dispatch" || "${{ inputs.build_x86_64 }}" == "true" ]]; then
-            echo "Building x86_64 ISO..."
-            ./build.sh --arch x86_64-linux
-            echo "Creating x86_64 checksum..."
-            cd build
-            echo "Files in build directory:"
-            ls -la
-            
-            # Check if the ISO file exists
-            if [ -f "thingnix-v0.1.0-alpha50-x86_64_linux.iso" ]; then
-              echo "Found ISO file, creating checksum"
-              sha256sum thingnix-v0.1.0-alpha50-x86_64_linux.iso > thingnix-x86_64.sha256
-              # Rename the ISO to a consistent name
-              cp thingnix-v0.1.0-alpha50-x86_64_linux.iso thingnix-x86_64.iso
-            else
-              echo "Looking for any ISO file..."
-              ISO_FILE=$(find . -name "*.iso" | head -n 1)
-              if [ -n "$ISO_FILE" ]; then
-                echo "Found ISO file: $ISO_FILE"
-                sha256sum "$ISO_FILE" > thingnix-x86_64.sha256
-                # Rename the ISO to a consistent name
-                cp "$ISO_FILE" thingnix-x86_64.iso
-              else
-                echo "No ISO file found, creating empty checksum"
-                touch thingnix-x86_64.sha256
-              fi
-            fi
-            cd ..
-          fi
+          echo "Building x86_64 ISO..."
+          ./build.sh --arch x86_64-linux
+          echo "Creating x86_64 checksum..."
+          cd build
+          echo "Files in build directory:"
+          ls -la
           
-          if [[ "${{ github.event_name }}" != "workflow_dispatch" || "${{ inputs.build_aarch64 }}" == "true" ]]; then
-            echo "Building aarch64 ISO..."
-            ./build.sh --arch aarch64-linux
-            echo "Creating aarch64 checksum..."
-            cd build
-            echo "Files in build directory:"
-            ls -la
-            
-            # Check if the ISO file exists
-            if [ -f "thingnix-v0.1.0-alpha50-aarch64_linux.iso" ]; then
-              echo "Found ISO file, creating checksum"
-              sha256sum thingnix-v0.1.0-alpha50-aarch64_linux.iso > thingnix-aarch64.sha256
+          # Check if the ISO file exists
+          if [ -f "thingnix-v0.1.0-alpha50-x86_64_linux.iso" ]; then
+            echo "Found ISO file, creating checksum"
+            sha256sum thingnix-v0.1.0-alpha50-x86_64_linux.iso > thingnix-x86_64.sha256
+            # Rename the ISO to a consistent name
+            cp thingnix-v0.1.0-alpha50-x86_64_linux.iso thingnix-x86_64.iso
+          else
+            echo "Looking for any ISO file..."
+            ISO_FILE=$(find . -name "*.iso" | head -n 1)
+            if [ -n "$ISO_FILE" ]; then
+              echo "Found ISO file: $ISO_FILE"
+              sha256sum "$ISO_FILE" > thingnix-x86_64.sha256
               # Rename the ISO to a consistent name
-              cp thingnix-v0.1.0-alpha50-aarch64_linux.iso thingnix-aarch64.iso
+              cp "$ISO_FILE" thingnix-x86_64.iso
             else
-              echo "Looking for any ISO file..."
-              ISO_FILE=$(find . -name "*.iso" | grep aarch64 | head -n 1)
-              if [ -n "$ISO_FILE" ]; then
-                echo "Found ISO file: $ISO_FILE"
-                sha256sum "$ISO_FILE" > thingnix-aarch64.sha256
-                # Rename the ISO to a consistent name
-                cp "$ISO_FILE" thingnix-aarch64.iso
-              else
-                echo "No ISO file found, creating empty checksum"
-                touch thingnix-aarch64.sha256
-              fi
+              echo "No ISO file found, creating empty checksum"
+              touch thingnix-x86_64.sha256
             fi
-            cd ..
           fi
+          cd ..
+          
+          # Note: aarch64 builds are disabled for now as they require proper cross-compilation setup
+          # Uncomment the following section when aarch64 builds are ready to be enabled
+          
+          # if [[ "${{ github.event_name }}" != "workflow_dispatch" || "${{ inputs.build_aarch64 }}" == "true" ]]; then
+          #   echo "Building aarch64 ISO..."
+          #   ./build.sh --arch aarch64-linux
+          #   echo "Creating aarch64 checksum..."
+          #   cd build
+          #   echo "Files in build directory:"
+          #   ls -la
+          #   
+          #   # Check if the ISO file exists
+          #   if [ -f "thingnix-v0.1.0-alpha50-aarch64_linux.iso" ]; then
+          #     echo "Found ISO file, creating checksum"
+          #     sha256sum thingnix-v0.1.0-alpha50-aarch64_linux.iso > thingnix-aarch64.sha256
+          #     # Rename the ISO to a consistent name
+          #     cp thingnix-v0.1.0-alpha50-aarch64_linux.iso thingnix-aarch64.iso
+          #   else
+          #     echo "Looking for any ISO file..."
+          #     ISO_FILE=$(find . -name "*.iso" | grep aarch64 | head -n 1)
+          #     if [ -n "$ISO_FILE" ]; then
+          #       echo "Found ISO file: $ISO_FILE"
+          #       sha256sum "$ISO_FILE" > thingnix-aarch64.sha256
+          #       # Rename the ISO to a consistent name
+          #       cp "$ISO_FILE" thingnix-aarch64.iso
+          #     else
+          #       echo "No ISO file found, creating empty checksum"
+          #       touch thingnix-aarch64.sha256
+          #     fi
+          #   fi
+          #   cd ..
+          # fi
+          
+          # Create empty aarch64 checksum to avoid workflow errors
+          touch build/thingnix-aarch64.sha256
       
       - name: Upload build artifacts
         if: startsWith(github.ref, 'refs/tags/')
@@ -112,7 +116,6 @@ jobs:
           prerelease: true
           files: |
             build/thingnix-x86_64.iso
-            build/thingnix-aarch64.iso
             build/thingnix-x86_64.sha256
             build/thingnix-aarch64.sha256
           body: |
@@ -121,17 +124,25 @@ jobs:
             A reproducible NixOS-based operating system for IoT penetration testing and hardware hacking.
             
             ## Changes in this release
-            <!-- Add release notes here -->
+            
+            This is the first alpha release of ThingNix, featuring:
+            
+            - NixOS 23.11 base system
+            - Core security and networking tools
+            - XFCE desktop environment
+            - Hardware hacking capabilities
             
             ## Download
             
             - [x86_64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ github.ref_name }}/thingnix-x86_64.iso)
-            - [aarch64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ github.ref_name }}/thingnix-aarch64.iso)
             
             ## Verification
             
             To verify the integrity of the downloaded ISO, use the provided checksums:
             ```
             sha256sum -c thingnix-x86_64.sha256
-            sha256sum -c thingnix-aarch64.sha256
             ```
+            
+            ## Note on aarch64 support
+            
+            aarch64 builds are temporarily disabled and will be enabled in a future release.
