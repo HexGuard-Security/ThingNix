@@ -25,7 +25,7 @@ A reproducible NixOS-based operating system for IoT penetration testing and hard
 
 ThingNix is a specialized NixOS distribution designed for security researchers, penetration testers, and hobbyists who work with Internet of Things (IoT) devices, embedded systems, and RF communications. It provides a declarative, reproducible environment with pre-configured tools for firmware analysis, radio frequency investigation, and hardware exploitation.
 
-Part of the future "NixCraft" series for specialized pentesting domains.
+Trying to solve a major problem with other IOT Pentesting distributions. That is the lack of updates/integration with new security tools. Security is a constantly evolving filed and we belive in having cutting edge tools right at our fingertips!
 
 ## Key Features
 
