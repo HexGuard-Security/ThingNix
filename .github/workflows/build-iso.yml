@@ -28,8 +28,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          lfs: true
 
       - name: Install Nix
         uses: cachix/install-nix-action@v22
@@ -37,15 +35,9 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
           extra_nix_config: |
             experimental-features = nix-command flakes
-            
+
       - name: Install dependencies
         run: nix-shell -p nixos-generators git --run "echo 'Dependencies installed'"
-        
-      - name: Install Git LFS
-        run: |
-          curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-          sudo apt-get install git-lfs
-          git lfs install
         
       - name: Build ISOs
         run: |
@@ -118,16 +110,14 @@ jobs:
           
           # Create empty aarch64 checksum to avoid workflow errors
           touch build/thingnix-aarch64.sha256
-          
-      - name: Add ISO to Git LFS
-        run: |
-          cd build
-          git lfs track "*.iso"
-          git add thingnix-x86_64.iso
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git commit -m "Add ISO file via Git LFS"
-          cd ..
+      
+      # Upload ISO as workflow artifact (can be accessed via nightly.link)
+      - name: Upload ISO as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: thingnix-x86_64.iso
+          path: build/thingnix-x86_64.iso
+          retention-days: 90
 
       - name: Upload build artifacts
         if: startsWith(github.ref, 'refs/tags/')
@@ -137,7 +127,6 @@ jobs:
           draft: true
           prerelease: true
           files: |
-            build/thingnix-x86_64.iso
             build/thingnix-x86_64.sha256
             build/thingnix-aarch64.sha256
           body: |
@@ -147,16 +136,34 @@ jobs:
             
             ## Changes in this release
             
-            This is the first alpha release of ThingNix, featuring:
+            This is the first official release of ThingNix, featuring:
             
             - NixOS 23.11 base system
             - Core security and networking tools
             - XFCE desktop environment
             - Hardware hacking capabilities
             
-            ## Download
+            ## ISO Download
             
-            - [x86_64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ github.ref_name }}/thingnix-x86_64.iso)
+            The ISO file exceeds GitHub's 2GB file size limit for release assets and is available as a GitHub Actions artifact:
+            
+            **Download Link**: [ThingNix ISO (x86_64)](https://nightly.link/HexGuard-Security/ThingNix/workflows/build-iso/main/thingnix-x86_64.iso.zip)
+            
+            Alternatively, you can build it locally:
+            
+            ```bash
+            # Clone the repository
+            git clone https://github.com/HexGuard-Security/ThingNix.git
+            cd ThingNix
+            
+            # Checkout this release
+            git checkout ${{ github.ref_name }}
+            
+            # Build the ISO (requires Nix with flakes enabled)
+            nix build .#packages.x86_64-linux.iso
+            
+            # The ISO will be available at ./result
+            ```
             
             ## Verification
             
