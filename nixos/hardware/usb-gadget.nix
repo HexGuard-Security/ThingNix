@@ -20,7 +20,7 @@
   environment.systemPackages = with pkgs; [
     usbutils     # Tools for working with USB
     libusb1      # USB library (renamed from libusb)
-    libcomposite # Tools for working with USB composite devices
+    # libcomposite is a kernel module, not a userspace package
   ];
   
   # Create systemd service for implementing USB gadget modes
