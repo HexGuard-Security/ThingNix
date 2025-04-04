@@ -55,7 +55,7 @@
           pkgs = pkgsFor system;
         in {
           iso = nixos-generators.nixosGenerate {
-            inherit system;
+            inherit system pkgs; 
             modules = [
               ./nixos/configurations/thingnix/default.nix
               {
