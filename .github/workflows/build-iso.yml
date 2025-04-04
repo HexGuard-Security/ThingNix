@@ -108,8 +108,8 @@ jobs:
           #   cd ..
           # fi
           
-          # Create empty aarch64 checksum to avoid workflow errors
-          touch build/thingnix-aarch64.sha256
+          # Create aarch64 checksum with content to avoid workflow errors
+          echo "aarch64 builds temporarily disabled" > build/thingnix-aarch64.sha256
           
           # Split ISO into smaller chunks for GitHub release
           cd build
