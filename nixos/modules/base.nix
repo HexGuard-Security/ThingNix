@@ -124,7 +124,7 @@
   # Removed sound.enable as it's deprecated
   hardware.alsa = {
     enable = true;
-    support32Bit = true;
+    # Removed support32Bit as it's not a valid option for ALSA
   };
   
   # Enable dconf
