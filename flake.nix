@@ -55,31 +55,33 @@
           pkgs = pkgsFor system;
         in {
           iso = nixos-generators.nixosGenerate {
-            inherit pkgs; # Only pass pkgs, not system
+            inherit pkgs;
             modules = [
-              ./nixos/configurations/thingnix/default.nix
-              {
-                # Remove nixpkgs.config.allowUnfree from here since it's already defined in default.nix
-                # Use a more stable kernel - use mkForce to override the definition in default.nix
-                boot.kernelPackages = nixpkgs.lib.mkForce pkgs.linuxPackages_6_1;
+              ({ config, lib, ... }: {
+                imports = [ ./nixos/configurations/thingnix/default.nix ];
+                
+                # Override the kernel packages with a more stable version
+                boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_1;
+                
                 # Explicitly set ISO image properties
                 isoImage.makeEfiBootable = true;
                 isoImage.makeUsbBootable = true;
+                
                 # Disable virtualisation options that might cause issues
                 virtualisation = {
-                  # Disable any virtualisation options that might reference missing files
                   docker.enable = false;
                   libvirtd.enable = false;
                   vmware.guest.enable = false;
                   virtualbox.guest.enable = false;
                 };
-              }
+                
+                # Override nixpkgs.config to avoid the conflict
+                nixpkgs.config = lib.mkForce {
+                  allowUnfree = true;
+                };
+              })
             ];
             format = "iso";
-            specialArgs = { 
-              inherit nixpkgs;
-              inherit pkgs;
-            };
           };
         });
 
