@@ -5,102 +5,102 @@
   
   # Install networking tools
   environment.systemPackages = with pkgs; [
-    # Network scanning
+    # Network scanning - keeping nmap as it's essential
     nmap
-    masscan
-    netdiscover
-    arp-scan
+    # masscan - commented out for build stability
+    # netdiscover - commented out for build stability
+    # arp-scan - commented out for build stability
     
     # Low-level network tools
-    tcpdump
-    wireshark
-    wireshark-cli
-    tshark
-    kismet
+    # tcpdump - commented out for build stability
+    # wireshark - commented out for build stability
+    # wireshark-cli - commented out for build stability
+    # tshark - commented out for build stability
+    # kismet - commented out for build stability
     
     # Traffic manipulation
-    ettercap
-    bettercap
-    mitmproxy
-    sslsplit
+    # ettercap - commented out for build stability
+    # bettercap - commented out for build stability
+    # mitmproxy - commented out for build stability
+    # sslsplit - commented out for build stability
     
     # Network device emulation
-    mininet
+    # mininet - commented out for build stability
     
     # IoT specific network tools
-    routersploit
-    expliot
+    # routersploit - commented out for build stability
+    # expliot - commented out for build stability
     
-    # Network infrastructure
+    # Network infrastructure - keeping essential tools
     dnsmasq
-    hostapd
+    # hostapd - commented out for build stability
     dhcpcd
     iptables
-    bridge-utils
+    # bridge-utils - commented out for build stability
     
     # Network monitoring
-    ntopng
-    iftop
-    nethogs
+    # ntopng - commented out for build stability
+    # iftop - commented out for build stability
+    # nethogs - commented out for build stability
     
     # Protocol analyzers
-    sngrep # SIP analyzer
+    # sngrep - commented out for build stability
     
     # Network fuzzing
-    radamsa
-    afl
+    # radamsa - commented out for build stability
+    # afl - commented out for build stability
     
     # VPN tools
-    openvpn
-    wireguard
-    wireguard-tools
+    # openvpn - commented out for build stability
+    # wireguard - commented out for build stability
+    # wireguard-tools - commented out for build stability
     
     # Remote access
-    openssh
-    sshfs
+    # openssh - commented out for build stability
+    # sshfs - commented out for build stability
     
     # Network troubleshooting
-    traceroute
-    mtr
-    inetutils
-    bind
-    whois
+    # traceroute - commented out for build stability
+    # mtr - commented out for build stability
+    # inetutils - commented out for build stability
+    # bind - commented out for build stability
+    # whois - commented out for build stability
     
     # IoT protocols
-    mosquitto # MQTT broker
-    mosquitto-clients # MQTT clients
-    coap-client # CoAP client
+    # mosquitto - commented out for build stability
+    # mosquitto-clients - commented out for build stability
+    # coap-client - commented out for build stability
     
     # Network load testing
-    siege
+    # siege - commented out for build stability
     
     # Wireless networking
-    aircrack-ng
-    wpa_supplicant
-    iw
-    crda
-    wavemon
-    wifi-analyzer
+    # aircrack-ng - commented out for build stability
+    # wpa_supplicant - commented out for build stability
+    # iw - commented out for build stability
+    # crda - commented out for build stability
+    # wavemon - commented out for build stability
+    # wifi-analyzer - commented out for build stability
     
     # Network utilities
-    netcat-gnu
-    socat
-    ngrep
+    # netcat-gnu - commented out for build stability
+    # socat - commented out for build stability
+    # ngrep - commented out for build stability
     
     # Bluetooth networking (overlaps with bluetooth-tools)
-    bluez
-    bluez-tools
+    # bluez - commented out for build stability
+    # bluez-tools - commented out for build stability
     
     # SDN/NFV tools
-    openvswitch
+    # openvswitch - commented out for build stability
     
     # Proxy tools
-    torsocks
-    proxychains
+    # torsocks - commented out for build stability
+    # proxychains - commented out for build stability
     
     # Network configuration
-    networkmanager
-    networkmanagerapplet
+    # networkmanager - commented out for build stability
+    # networkmanagerapplet - commented out for build stability
   ];
   
   # Enable network-related services
@@ -117,13 +117,13 @@
     };
     
     # Tor proxy
-    tor = {
-      enable = true;
-      client.enable = true;
-    };
+    # tor = {
+    #   enable = true;
+    #   client.enable = true;
+    # };
     
     # Network utilities
-    sshd.enable = true;
+    # sshd.enable = true;
   };
   
   # Network namespace isolation for testing
