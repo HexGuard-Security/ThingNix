@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          lfs: true
 
       - name: Install Nix
         uses: cachix/install-nix-action@v22
@@ -38,6 +40,12 @@ jobs:
             
       - name: Install dependencies
         run: nix-shell -p nixos-generators git --run "echo 'Dependencies installed'"
+        
+      - name: Install Git LFS
+        run: |
+          curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+          sudo apt-get install git-lfs
+          git lfs install
         
       - name: Build ISOs
         run: |
@@ -110,7 +118,17 @@ jobs:
           
           # Create empty aarch64 checksum to avoid workflow errors
           touch build/thingnix-aarch64.sha256
-      
+          
+      - name: Add ISO to Git LFS
+        run: |
+          cd build
+          git lfs track "*.iso"
+          git add thingnix-x86_64.iso
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git commit -m "Add ISO file via Git LFS"
+          cd ..
+
       - name: Upload build artifacts
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
@@ -142,7 +160,7 @@ jobs:
             
             ## Verification
             
-            To verify the integrity of the downloaded ISO, use the provided checksums:
+            To verify the integrity of the downloaded ISO, use:
             ```
             sha256sum -c thingnix-x86_64.sha256
             ```
