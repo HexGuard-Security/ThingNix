@@ -6,13 +6,13 @@
   # Install Bluetooth-related packages and helper scripts
   environment.systemPackages = with pkgs; [
     # Core Bluetooth tools
-    bluez
+    bluez      # includes gattool, hcitool, and other BT utilities
     bluez-tools
     bluez-alsa
     
     # BLE scanning and sniffing
     aioblescan  # Library to listen for BLE advertized packets
-    gattool
+    # gattool is included in the bluez package
     btlejack
     
     # Bluetooth security testing
