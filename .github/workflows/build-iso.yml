@@ -51,16 +51,24 @@ jobs:
             echo "Files in build directory:"
             ls -la
             
-            # Find the actual ISO file and create checksum
-            ISO_FILE=$(find . -name "*.iso" | head -n 1)
-            if [ -n "$ISO_FILE" ]; then
-              echo "Found ISO file: $ISO_FILE"
-              sha256sum "$ISO_FILE" > thingnix-x86_64.sha256
+            # Check if the ISO file exists
+            if [ -f "thingnix-v0.1.0-alpha50-x86_64_linux.iso" ]; then
+              echo "Found ISO file, creating checksum"
+              sha256sum thingnix-v0.1.0-alpha50-x86_64_linux.iso > thingnix-x86_64.sha256
               # Rename the ISO to a consistent name
-              cp "$ISO_FILE" thingnix-x86_64.iso
+              cp thingnix-v0.1.0-alpha50-x86_64_linux.iso thingnix-x86_64.iso
             else
-              echo "Warning: No x86_64 ISO found for checksum"
-              touch thingnix-x86_64.sha256
+              echo "Looking for any ISO file..."
+              ISO_FILE=$(find . -name "*.iso" | head -n 1)
+              if [ -n "$ISO_FILE" ]; then
+                echo "Found ISO file: $ISO_FILE"
+                sha256sum "$ISO_FILE" > thingnix-x86_64.sha256
+                # Rename the ISO to a consistent name
+                cp "$ISO_FILE" thingnix-x86_64.iso
+              else
+                echo "No ISO file found, creating empty checksum"
+                touch thingnix-x86_64.sha256
+              fi
             fi
             cd ..
           fi
@@ -73,16 +81,24 @@ jobs:
             echo "Files in build directory:"
             ls -la
             
-            # Find the actual ISO file and create checksum
-            ISO_FILE=$(find . -name "*.iso" | grep aarch64 | head -n 1)
-            if [ -n "$ISO_FILE" ]; then
-              echo "Found ISO file: $ISO_FILE"
-              sha256sum "$ISO_FILE" > thingnix-aarch64.sha256
+            # Check if the ISO file exists
+            if [ -f "thingnix-v0.1.0-alpha50-aarch64_linux.iso" ]; then
+              echo "Found ISO file, creating checksum"
+              sha256sum thingnix-v0.1.0-alpha50-aarch64_linux.iso > thingnix-aarch64.sha256
               # Rename the ISO to a consistent name
-              cp "$ISO_FILE" thingnix-aarch64.iso
+              cp thingnix-v0.1.0-alpha50-aarch64_linux.iso thingnix-aarch64.iso
             else
-              echo "Warning: No aarch64 ISO found for checksum"
-              touch thingnix-aarch64.sha256
+              echo "Looking for any ISO file..."
+              ISO_FILE=$(find . -name "*.iso" | grep aarch64 | head -n 1)
+              if [ -n "$ISO_FILE" ]; then
+                echo "Found ISO file: $ISO_FILE"
+                sha256sum "$ISO_FILE" > thingnix-aarch64.sha256
+                # Rename the ISO to a consistent name
+                cp "$ISO_FILE" thingnix-aarch64.iso
+              else
+                echo "No ISO file found, creating empty checksum"
+                touch thingnix-aarch64.sha256
+              fi
             fi
             cd ..
           fi

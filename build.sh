@@ -89,24 +89,32 @@ build_iso() {
         ".#packages.${arch}.iso" \
         --out-link "$BUILD_DIR/$output_name.drv"
     
-    # Copy the result to the build directory - use -r for recursive copy since the output may be a directory
+    # Copy the result to the build directory
     local iso_path="$(readlink -f "$BUILD_DIR/$output_name.drv")"
     echo "Build output at: $iso_path"
     
     if [ -d "$iso_path" ]; then
-        # If it's a directory, find the ISO file inside it
-        echo "Output is a directory, searching for ISO file..."
-        local iso_file=$(find "$iso_path" -name "*.iso" | head -n 1)
-        if [ -n "$iso_file" ]; then
-            echo "Found ISO file: $iso_file"
-            cp -f "$iso_file" "$BUILD_DIR/$output_name.iso"
+        echo "Output is a directory, copying entire directory..."
+        cp -r "$iso_path" "$BUILD_DIR/$output_name"
+        echo "Copied directory to $BUILD_DIR/$output_name"
+        
+        # List contents to help debug
+        echo "Contents of copied directory:"
+        ls -la "$BUILD_DIR/$output_name"
+        
+        # Look for ISO files inside the directory
+        local iso_files=$(find "$BUILD_DIR/$output_name" -name "*.iso")
+        if [ -n "$iso_files" ]; then
+            echo "Found ISO files inside directory:"
+            echo "$iso_files"
+            # Copy the first ISO file to the expected location
+            local first_iso=$(echo "$iso_files" | head -n 1)
+            cp -f "$first_iso" "$BUILD_DIR/$output_name.iso"
+            echo "Copied $first_iso to $BUILD_DIR/$output_name.iso"
         else
-            echo -e "${RED}No ISO file found in $iso_path${NC}"
-            # Try to copy the directory as a fallback
-            cp -r "$iso_path" "$BUILD_DIR/$output_name"
-            echo "Copied directory to $BUILD_DIR/$output_name"
-            # List contents to help debug
-            ls -la "$BUILD_DIR/$output_name"
+            echo -e "${YELLOW}No ISO files found inside directory. Using directory as is.${NC}"
+            # Create a symlink with .iso extension pointing to the directory
+            ln -sf "$output_name" "$BUILD_DIR/$output_name.iso"
         fi
     else
         # If it's a file, copy it directly
