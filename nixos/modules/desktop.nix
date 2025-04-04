@@ -195,8 +195,8 @@
     jack.enable = true;   # JACK compatibility
   };
   
-  # Explicitly disable PulseAudio to avoid conflicts with PipeWire
-  services.pulseaudio.enable = false;
+  # Removed standalone services.pulseaudio as it doesn't exist in NixOS 23.11
+  # PulseAudio is now controlled via the pipewire configuration above
   
   # Enable bluetooth
   hardware.bluetooth = {
