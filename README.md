@@ -1,6 +1,19 @@
 # ThingNix
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![NixOS](https://img.shields.io/badge/NixOS-25.05-blue.svg?logo=nixos&logoColor=white)](https://nixos.org)
+[![Open Source Hardware](https://img.shields.io/badge/Hardware-Open%20Source-orange.svg?logo=open-source-initiative&logoColor=white)](https://www.oshwa.org)
+[![Version](https://img.shields.io/badge/Version-0.1.0--alpha-brightgreen.svg)](https://github.com/HexGuard-Security/ThingNix/releases)
+[![Maintained by HexGuard-Security](https://img.shields.io/badge/Maintained%20by-HexGuard--Security-red.svg)](https://github.com/HexGuard-Security)
+
 A reproducible NixOS-based operating system for IoT penetration testing and hardware hacking.
+
+<div align="center">
+  <img src="https://nixos.org/logo/nixos-logo-only-hires.png" alt="NixOS Logo" height="100"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Open-source-hardware-logo.svg" alt="Open Source Hardware Logo" height="100"/>
+  <img src="https://raw.githubusercontent.com/NationalSecurityAgency/ghidra/master/Ghidra/Framework/Generic/src/main/resources/images/GhidraIcon64.png" alt="Ghidra Logo" height="100"/>
+  <img src="https://www.rtl-sdr.com/wp-content/uploads/2013/04/SDRSharp1.png" alt="RTL-SDR Logo" height="100"/>
+</div>
 
 ## Overview
 
@@ -19,6 +32,12 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 ## Tool Categories
 
 ### Firmware Analysis
+<div align="center">
+  <img src="https://www.ghidra-sre.org/images/GHIDRA_1.png" alt="Ghidra" height="50"/>
+  <img src="https://camo.githubusercontent.com/77da1459712b5504d6ac8a846de5dd629a866aa89f3c399cdfee49a644ca4b06/68747470733a2f2f7777772e72616461726532746563686e69717565732e636f6d2f696d616765732f7261645f6c6f676f2e706e67" alt="Radare2" height="50"/>
+  <img src="https://www.flashrom.org/images/0/04/Flashrom.svg" alt="Flashrom" height="50"/>
+</div>
+
 - Binwalk
 - Ghidra
 - Radare2
@@ -26,6 +45,11 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 - Flashrom
 
 ### RF/SDR
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Gnuradio_logo_icon.png" alt="GNU Radio" height="50"/>
+  <img src="https://gqrx.dk/wp-content/uploads/2016/06/gqrx-logo.png" alt="GQRX" height="50"/>
+</div>
+
 - RTL-SDR
 - GNURadio
 - GQRX
@@ -40,6 +64,12 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 - BTLEJack
 
 ### Network/Exploitation
+<div align="center">
+  <img src="https://nmap.org/images/nmap-logo-256x256.png" alt="Nmap" height="50"/>
+  <img src="https://www.metasploit.com/includes/images/favicon.ico" alt="Metasploit" height="50"/>
+  <img src="https://www.bettercap.org/assets/favicons/android-chrome-512x512.png" alt="Bettercap" height="50"/>
+</div>
+
 - Nmap
 - Metasploit
 - Bettercap
@@ -47,6 +77,12 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 - Expliot
 
 ### Utilities
+<div align="center">
+  <img src="https://www.wireshark.org/assets/theme-2015/images/wireshark_logo.png" alt="Wireshark" height="50"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Qt_logo_2016.svg/1200px-Qt_logo_2016.svg.png" alt="QEMU" height="50"/>
+  <img src="https://sigrok.org/wiki/images/f/fe/Pulseview-logo.png" alt="Sigrok" height="50"/>
+</div>
+
 - Python3
 - Wireshark
 - QEMU
@@ -71,8 +107,8 @@ See [HARDWARE.md](HARDWARE.md) for detailed compatibility information.
 
 ```bash
 # Clone the repository
-git clone [https://github.com/yourusername/thingnix.git](https://github.com/yourusername/thingnix.git)
-cd thingnix
+git clone https://github.com/HexGuard-Security/ThingNix.git
+cd ThingNix
 
 # Build a minimal ISO with the current config
 sudo nixos-generate -f iso --flake .#thingnix
@@ -99,10 +135,11 @@ ThingNix welcomes contributions! Please feel free to submit issues or pull reque
 - Add USB gadget attack capabilities
 - Release first ISO image
 
+## Community
+
+[![Discord](https://img.shields.io/discord/1234567890?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/thingnix)
+[![Twitter Follow](https://img.shields.io/twitter/follow/HexGuardSec?style=social)](https://twitter.com/HexGuardSec)
+
 ## License
 
-ThingNix is released under the MIT License.
-
-## Authors
-
-- [HexGuard Developer](https://github.com/hexGuard-Security)
+ThingNix is released under the [MIT License](LICENSE).
