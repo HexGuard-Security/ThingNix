@@ -17,6 +17,10 @@ on:
         type: boolean
         default: true
 
+# Add permissions for creating releases
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build ThingNix ISO
