@@ -40,7 +40,7 @@
     # btstack - removed due to compatibility issues
     
     # Misc
-    nrf-tools # Nordic Semiconductor tools for BLE development
+    # nrf-tools - removed due to compatibility issues
     
     # Visualization tools
     wireshark # For Bluetooth protocol analysis
