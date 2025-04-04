@@ -90,12 +90,28 @@ build_iso() {
         --out-link "$BUILD_DIR/$output_name.drv"
     
     # Copy the result to the build directory - use -r for recursive copy since the output may be a directory
-    if [ -d "$(readlink -f "$BUILD_DIR/$output_name.drv")" ]; then
+    local iso_path="$(readlink -f "$BUILD_DIR/$output_name.drv")"
+    echo "Build output at: $iso_path"
+    
+    if [ -d "$iso_path" ]; then
         # If it's a directory, find the ISO file inside it
-        find "$(readlink -f "$BUILD_DIR/$output_name.drv")" -name "*.iso" -exec cp -f {} "$BUILD_DIR/$output_name.iso" \;
+        echo "Output is a directory, searching for ISO file..."
+        local iso_file=$(find "$iso_path" -name "*.iso" | head -n 1)
+        if [ -n "$iso_file" ]; then
+            echo "Found ISO file: $iso_file"
+            cp -f "$iso_file" "$BUILD_DIR/$output_name.iso"
+        else
+            echo -e "${RED}No ISO file found in $iso_path${NC}"
+            # Try to copy the directory as a fallback
+            cp -r "$iso_path" "$BUILD_DIR/$output_name"
+            echo "Copied directory to $BUILD_DIR/$output_name"
+            # List contents to help debug
+            ls -la "$BUILD_DIR/$output_name"
+        fi
     else
         # If it's a file, copy it directly
-        cp -f "$(readlink -f "$BUILD_DIR/$output_name.drv")" "$BUILD_DIR/$output_name.iso"
+        echo "Output is a file, copying directly..."
+        cp -f "$iso_path" "$BUILD_DIR/$output_name.iso"
     fi
     
     echo -e "${GREEN}Successfully built ISO for ${arch}!${NC}"

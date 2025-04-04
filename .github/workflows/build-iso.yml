@@ -50,7 +50,18 @@ jobs:
             cd build
             echo "Files in build directory:"
             ls -la
-            sha256sum thingnix-v0.1.0-alpha50-x86_64_linux.iso > thingnix-x86_64.sha256 || echo "Warning: No x86_64 ISO found for checksum"
+            
+            # Find the actual ISO file and create checksum
+            ISO_FILE=$(find . -name "*.iso" | head -n 1)
+            if [ -n "$ISO_FILE" ]; then
+              echo "Found ISO file: $ISO_FILE"
+              sha256sum "$ISO_FILE" > thingnix-x86_64.sha256
+              # Rename the ISO to a consistent name
+              cp "$ISO_FILE" thingnix-x86_64.iso
+            else
+              echo "Warning: No x86_64 ISO found for checksum"
+              touch thingnix-x86_64.sha256
+            fi
             cd ..
           fi
           
@@ -61,7 +72,18 @@ jobs:
             cd build
             echo "Files in build directory:"
             ls -la
-            sha256sum thingnix-v0.1.0-alpha50-aarch64_linux.iso > thingnix-aarch64.sha256 || echo "Warning: No aarch64 ISO found for checksum"
+            
+            # Find the actual ISO file and create checksum
+            ISO_FILE=$(find . -name "*.iso" | grep aarch64 | head -n 1)
+            if [ -n "$ISO_FILE" ]; then
+              echo "Found ISO file: $ISO_FILE"
+              sha256sum "$ISO_FILE" > thingnix-aarch64.sha256
+              # Rename the ISO to a consistent name
+              cp "$ISO_FILE" thingnix-aarch64.iso
+            else
+              echo "Warning: No aarch64 ISO found for checksum"
+              touch thingnix-aarch64.sha256
+            fi
             cd ..
           fi
       
@@ -73,8 +95,8 @@ jobs:
           draft: true
           prerelease: true
           files: |
-            build/thingnix-v0.1.0-alpha50-x86_64_linux.iso
-            build/thingnix-v0.1.0-alpha50-aarch64_linux.iso
+            build/thingnix-x86_64.iso
+            build/thingnix-aarch64.iso
             build/thingnix-x86_64.sha256
             build/thingnix-aarch64.sha256
           body: |
@@ -87,8 +109,8 @@ jobs:
             
             ## Download
             
-            - [x86_64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ github.ref_name }}/thingnix-${{ github.ref_name }}-x86_64-linux.iso)
-            - [aarch64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ github.ref_name }}/thingnix-${{ github.ref_name }}-aarch64-linux.iso)
+            - [x86_64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ github.ref_name }}/thingnix-x86_64.iso)
+            - [aarch64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ github.ref_name }}/thingnix-aarch64.iso)
             
             ## Verification
             
