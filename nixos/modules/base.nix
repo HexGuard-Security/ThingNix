@@ -120,9 +120,12 @@
     };
   };
   
-  # Sound
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # Sound configuration using the newer approach
+  # Removed sound.enable as it's deprecated
+  hardware.alsa = {
+    enable = true;
+    support32Bit = true;
+  };
   
   # Enable dconf
   programs.dconf.enable = true;

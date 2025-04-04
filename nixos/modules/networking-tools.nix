@@ -108,25 +108,12 @@
     # DNS server
     dnsmasq = {
       enable = true;
-      extraConfig = ''
+      settings = {
         # Configuration for IoT network testing
-        interface=pentestbr0
-        dhcp-range=192.168.100.50,192.168.100.150,12h
-        dhcp-option=option:router,192.168.100.1
-      '';
-    };
-    
-    # DHCP server
-    dhcpd4 = {
-      enable = false; # Disabled by default, can be enabled when needed
-      interfaces = [ "pentestbr0" ];
-      extraConfig = ''
-        subnet 192.168.100.0 netmask 255.255.255.0 {
-          option routers 192.168.100.1;
-          option domain-name-servers 8.8.8.8, 8.8.4.4;
-          range 192.168.100.50 192.168.100.150;
-        }
-      '';
+        interface = "pentestbr0";
+        dhcp-range = ["192.168.100.50,192.168.100.150,12h"];
+        dhcp-option = ["option:router,192.168.100.1"];
+      };
     };
     
     # Tor proxy

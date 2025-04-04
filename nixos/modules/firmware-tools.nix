@@ -193,12 +193,12 @@
     # Network services for emulated firmware
     dnsmasq = {
       enable = true;
-      extraConfig = ''
+      settings = {
         # Configuration for firmware emulation network
-        interface=fw-net0
-        dhcp-range=192.168.200.50,192.168.200.150,12h
-        dhcp-option=option:router,192.168.200.1
-      '';
+        interface = "fw-net0";
+        dhcp-range = ["192.168.200.50,192.168.200.150,12h"];
+        dhcp-option = ["option:router,192.168.200.1"];
+      };
     };
   };
   

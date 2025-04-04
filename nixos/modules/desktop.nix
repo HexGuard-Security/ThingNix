@@ -180,13 +180,18 @@
   # Enable cups for printing
   services.printing.enable = true;
   
-  # Enable sound
-  sound.enable = true;
-  hardware.pulseaudio = {
+  # Audio configuration - using PipeWire instead of PulseAudio
+  # Removed sound.enable as it's deprecated
+  services.pipewire = {
     enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;  # PulseAudio compatibility
+    jack.enable = true;   # JACK compatibility
   };
+  
+  # Explicitly disable PulseAudio to avoid conflicts with PipeWire
+  hardware.pulseaudio.enable = false;
   
   # Enable bluetooth
   hardware.bluetooth = {
