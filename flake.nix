@@ -54,8 +54,14 @@
           inherit system;
           modules = [
             ./nixos/configurations/thingnix/default.nix
+            {
+              nixpkgs.config.allowUnfree = true;
+            }
           ];
           format = "iso";
+          specialArgs = { 
+            nixpkgs.config.allowUnfree = true;
+          };
         };
       });
 

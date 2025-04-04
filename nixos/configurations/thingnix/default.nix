@@ -16,6 +16,9 @@
     ../../modules/bluetooth-tools.nix
   ];
 
+  # Allow unfree packages (needed for some firmware and tools)
+  nixpkgs.config.allowUnfree = true;
+
   # Basic system configuration
   system.stateVersion = "23.11";
   
