@@ -165,16 +165,16 @@
     };
   };
   
-  # Enable virtualization capabilities
-  virtualisation = {
-    libvirtd.enable = true;
-    
-    # Docker for containerized pentesting
-    docker = {
-      enable = true;
-      autoPrune.enable = true;
-    };
-  };
+  # Virtualization capabilities - commented out for build stability
+  # virtualisation = {
+  #   libvirtd.enable = true;
+  #   
+  #   # Docker for containerized pentesting
+  #   docker = {
+  #     enable = true;
+  #     autoPrune.enable = true;
+  #   };
+  # };
   
   # Enable promiscuous mode on network interfaces
   systemd.services.enable-promiscuous = {
