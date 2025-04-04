@@ -18,9 +18,8 @@ on:
         default: true
 
 jobs:
-  build-x86_64:
-    name: Build x86_64 ISO
-    if: ${{ github.event_name != 'workflow_dispatch' || inputs.build_x86_64 }}
+  build:
+    name: Build ThingNix ISO
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -42,116 +41,43 @@ jobs:
       - name: Install dependencies
         run: nix-shell -p nixos-generators git --run "echo 'Dependencies installed'"
         
-      - name: Build x86_64 ISO
+      - name: Build ISOs
         run: |
           mkdir -p build
           chmod +x build.sh
-          ./build.sh --arch x86_64
           
-      - name: Upload ISO artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: thingnix-x86_64-iso
-          path: build/thingnix-*-x86_64-*.iso
-          retention-days: 7
+          if [[ "${{ github.event_name }}" != "workflow_dispatch" || "${{ inputs.build_x86_64 }}" == "true" ]]; then
+            echo "Building x86_64 ISO..."
+            ./build.sh --arch x86_64
+            echo "Creating x86_64 checksum..."
+            cd build
+            sha256sum thingnix-*-x86_64-*.iso > thingnix-x86_64.sha256
+            cd ..
+          fi
           
-      - name: Create checksum file
+          if [[ "${{ github.event_name }}" != "workflow_dispatch" || "${{ inputs.build_aarch64 }}" == "true" ]]; then
+            echo "Building aarch64 ISO..."
+            ./build.sh --arch aarch64
+            echo "Creating aarch64 checksum..."
+            cd build
+            sha256sum thingnix-*-aarch64-*.iso > thingnix-aarch64.sha256
+            cd ..
+          fi
+      
+      - name: Upload build artifacts
         if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          cd build
-          sha256sum thingnix-*-x86_64-*.iso > thingnix-x86_64.sha256
-          
-      - name: Upload checksum artifact
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/upload-artifact@v2
-        with:
-          name: thingnix-x86_64-checksum
-          path: build/thingnix-x86_64.sha256
-          retention-days: 7
-
-  build-aarch64:
-    name: Build aarch64 ISO
-    if: ${{ github.event_name != 'workflow_dispatch' || inputs.build_aarch64 }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v22
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-            
-      - name: Set up Cachix
-        uses: cachix/cachix-action@v12
-        with:
-          name: thingnix
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-          
-      - name: Install dependencies
-        run: nix-shell -p nixos-generators git --run "echo 'Dependencies installed'"
-        
-      - name: Build aarch64 ISO
-        run: |
-          mkdir -p build
-          chmod +x build.sh
-          ./build.sh --arch aarch64
-          
-      - name: Upload ISO artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: thingnix-aarch64-iso
-          path: build/thingnix-*-aarch64-*.iso
-          retention-days: 7
-          
-      - name: Create checksum file
-        if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          cd build
-          sha256sum thingnix-*-aarch64-*.iso > thingnix-aarch64.sha256
-          
-      - name: Upload checksum artifact
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/upload-artifact@v2
-        with:
-          name: thingnix-aarch64-checksum
-          path: build/thingnix-aarch64.sha256
-          retention-days: 7
-
-  release:
-    name: Create Release
-    needs: [build-x86_64, build-aarch64]
-    if: startsWith(github.ref, 'refs/tags/')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        
-      - name: Get version from tag
-        id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-        
-      - name: Download all artifacts
-        uses: actions/download-artifact@v2
-        with:
-          path: artifacts
-          
-      - name: Create Release
-        id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          name: ThingNix ${{ steps.get_version.outputs.VERSION }}
+          name: ThingNix ${{ github.ref_name }}
           draft: true
           prerelease: true
           files: |
-            artifacts/thingnix-x86_64-iso/*.iso
-            artifacts/thingnix-aarch64-iso/*.iso
-            artifacts/thingnix-x86_64-checksum/*.sha256
-            artifacts/thingnix-aarch64-checksum/*.sha256
+            build/thingnix-*-x86_64-*.iso
+            build/thingnix-*-aarch64-*.iso
+            build/thingnix-x86_64.sha256
+            build/thingnix-aarch64.sha256
           body: |
-            # ThingNix ${{ steps.get_version.outputs.VERSION }}
+            # ThingNix ${{ github.ref_name }}
             
             A reproducible NixOS-based operating system for IoT penetration testing and hardware hacking.
             
@@ -160,8 +86,8 @@ jobs:
             
             ## Download
             
-            - [x86_64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ steps.get_version.outputs.VERSION }}/thingnix-${{ steps.get_version.outputs.VERSION }}-x86_64-linux.iso)
-            - [aarch64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ steps.get_version.outputs.VERSION }}/thingnix-${{ steps.get_version.outputs.VERSION }}-aarch64-linux.iso)
+            - [x86_64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ github.ref_name }}/thingnix-${{ github.ref_name }}-x86_64-linux.iso)
+            - [aarch64 ISO](https://github.com/HexGuard-Security/ThingNix/releases/download/${{ github.ref_name }}/thingnix-${{ github.ref_name }}-aarch64-linux.iso)
             
             ## Verification
             
