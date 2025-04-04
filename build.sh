@@ -89,8 +89,14 @@ build_iso() {
         ".#packages.${arch}.iso" \
         --out-link "$BUILD_DIR/$output_name.drv"
     
-    # Copy the result to the build directory
-    cp -f $(readlink -f "$BUILD_DIR/$output_name.drv") "$BUILD_DIR/$output_name.iso"
+    # Copy the result to the build directory - use -r for recursive copy since the output may be a directory
+    if [ -d "$(readlink -f "$BUILD_DIR/$output_name.drv")" ]; then
+        # If it's a directory, find the ISO file inside it
+        find "$(readlink -f "$BUILD_DIR/$output_name.drv")" -name "*.iso" -exec cp -f {} "$BUILD_DIR/$output_name.iso" \;
+    else
+        # If it's a file, copy it directly
+        cp -f "$(readlink -f "$BUILD_DIR/$output_name.drv")" "$BUILD_DIR/$output_name.iso"
+    fi
     
     echo -e "${GREEN}Successfully built ISO for ${arch}!${NC}"
     echo "ISO available at: $BUILD_DIR/$output_name.iso"
@@ -100,95 +106,99 @@ build_iso() {
 clean_build() {
     echo -e "${BLUE}Cleaning build artifacts...${NC}"
     rm -rf "$BUILD_DIR"
+    rm -rf "$CACHE_DIR"
     echo -e "${GREEN}Build artifacts cleaned.${NC}"
 }
 
 # Create checksums for built ISOs
 create_checksums() {
-    echo -e "${BLUE}Creating checksums for ISOs...${NC}"
-    cd "$BUILD_DIR" || exit
-    sha256sum *.iso > SHA256SUMS
-    cd - > /dev/null || exit
-    echo -e "${GREEN}Checksums created at $BUILD_DIR/SHA256SUMS${NC}"
+    echo -e "${BLUE}Creating checksums...${NC}"
+    cd "$BUILD_DIR" || exit 1
+    sha256sum *.iso > checksums.sha256
+    cd - > /dev/null || exit 1
+    echo -e "${GREEN}Checksums created.${NC}"
 }
 
 # Show help message
 show_help() {
     echo "ThingNix Build Script"
-    echo "Usage: $0 [options]"
+    echo "Usage: $0 [OPTIONS]"
     echo ""
     echo "Options:"
-    echo "  -a, --arch ARCH     Build for specific architecture (default: $DEFAULT_ARCH)"
-    echo "                      Supported: ${SUPPORTED_ARCHS[*]}"
-    echo "  -c, --clean         Clean build artifacts before building"
-    echo "  -h, --help          Show this help message"
-    echo "  -v, --verbose       Enable verbose output"
+    echo "  --help, -h       Show this help message"
+    echo "  --arch ARCH      Build for specific architecture (${SUPPORTED_ARCHS[*]})"
+    echo "                   Default: $DEFAULT_ARCH"
+    echo "  --clean          Clean build artifacts before building"
+    echo "  --version VER    Set version number (default: $VERSION)"
     echo ""
     echo "Examples:"
-    echo "  $0                  Build for $DEFAULT_ARCH"
-    echo "  $0 -a aarch64-linux Build for aarch64-linux"
-    echo "  $0 -c               Clean and build for $DEFAULT_ARCH"
+    echo "  $0 --arch x86_64-linux"
+    echo "  $0 --arch aarch64-linux --clean"
 }
 
 # Main function
 main() {
     local arch="$DEFAULT_ARCH"
-    local clean_first=false
-    local verbose=false
+    local clean=false
     
-    # Parse arguments
-    while [[ "$#" -gt 0 ]]; do
+    # Parse command line arguments
+    while [[ $# -gt 0 ]]; do
         case "$1" in
-            -a|--arch)
-                arch="$2"
-                shift 2
-                ;;
-            -c|--clean)
-                clean_first=true
-                shift
-                ;;
-            -h|--help)
+            --help|-h)
                 show_help
                 exit 0
                 ;;
-            -v|--verbose)
-                verbose=true
+            --arch)
                 shift
+                arch="$1"
+                # Validate architecture
+                local valid=false
+                for a in "${SUPPORTED_ARCHS[@]}"; do
+                    if [[ "$a" == "$arch" ]]; then
+                        valid=true
+                        break
+                    fi
+                done
+                if ! $valid; then
+                    echo -e "${RED}Error: Unsupported architecture '$arch'.${NC}"
+                    echo "Supported architectures: ${SUPPORTED_ARCHS[*]}"
+                    exit 1
+                fi
+                ;;
+            --clean)
+                clean=true
+                ;;
+            --version)
+                shift
+                VERSION="$1"
                 ;;
             *)
-                echo "Unknown option: $1"
+                echo -e "${RED}Error: Unknown option '$1'${NC}"
                 show_help
                 exit 1
                 ;;
         esac
+        shift
     done
     
-    # Validate architecture
-    if [[ ! " ${SUPPORTED_ARCHS[*]} " =~ " ${arch} " ]]; then
-        echo -e "${RED}Error: Unsupported architecture: ${arch}${NC}"
-        echo "Supported architectures: ${SUPPORTED_ARCHS[*]}"
-        exit 1
-    fi
-    
-    # Set verbose mode if requested
-    if $verbose; then
-        set -x
-    fi
-    
+    # Print banner
     print_banner
+    
+    # Check prerequisites
     check_prerequisites
     
-    if $clean_first; then
+    # Clean if requested
+    if $clean; then
         clean_build
     fi
     
+    # Create build directories
     create_build_dirs
-    build_iso "$arch"
-    create_checksums
     
-    echo -e "${GREEN}ThingNix build completed successfully!${NC}"
-    echo "ISO is available at: $BUILD_DIR/${ISO_NAME}-${VERSION}-${arch//-/_}.iso"
-    echo "Checksum available at: $BUILD_DIR/SHA256SUMS"
+    # Build ISO
+    build_iso "$arch"
+    
+    echo -e "${GREEN}Build completed successfully!${NC}"
 }
 
 # Run main function
