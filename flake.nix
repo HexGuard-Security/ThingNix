@@ -2,20 +2,20 @@
   description = "ThingNix: A NixOS-based OS for IoT penetration testing and hardware hacking";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable 23.11
     
     # Hardware specific configurations
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     
     # Home-manager for user environment configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-23.11"; # Matching 23.11
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    # Useful for creating bootable ISO images
+    # Useful for creating bootable ISO images - pin to a specific version
     nixos-generators = {
-      url = "github:nix-community/nixos-generators";
+      url = "github:nix-community/nixos-generators/release-23.11"; # Pin to 23.11 for compatibility
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -29,8 +29,8 @@
       pkgsFor = system: import nixpkgs {
         inherit system;
         config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [];
+          allowUnfree = true; # Some pentesting tools may be unfree
+          permittedInsecurePackages = []; # Allow any insecure packages if needed
         };
       };
     in {
@@ -50,22 +50,38 @@
         };
       };
 
-      packages = forAllSystems (system: {
-        iso = nixos-generators.nixosGenerate {
-          inherit system;
-          modules = [
-            ./nixos/configurations/thingnix/default.nix
-            {
-              nixpkgs.config.allowUnfree = true;
-              boot.kernelPackages = pkgs: pkgs.linuxPackages_6_1;
-            }
-          ];
-          format = "iso";
-          specialArgs = { 
-            nixpkgs.config.allowUnfree = true;
+      packages = forAllSystems (system: 
+        let 
+          pkgs = pkgsFor system;
+        in {
+          iso = nixos-generators.nixosGenerate {
+            inherit system;
+            modules = [
+              ./nixos/configurations/thingnix/default.nix
+              {
+                nixpkgs.config.allowUnfree = true;
+                # Use a more stable kernel
+                boot.kernelPackages = pkgs.linuxPackages_6_1;
+                # Explicitly set ISO image properties
+                isoImage.makeEfiBootable = true;
+                isoImage.makeUsbBootable = true;
+                # Disable virtualisation options that might cause issues
+                virtualisation = {
+                  # Disable any virtualisation options that might reference missing files
+                  docker.enable = false;
+                  libvirtd.enable = false;
+                  vmware.guest.enable = false;
+                  virtualbox.guest.enable = false;
+                };
+              }
+            ];
+            format = "iso";
+            specialArgs = { 
+              inherit nixpkgs;
+              inherit pkgs;
+            };
           };
-        };
-      });
+        });
 
       devShells = forAllSystems (system:
         let pkgs = pkgsFor system;
