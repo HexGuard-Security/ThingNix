@@ -18,6 +18,7 @@ A reproducible NixOS-based operating system for IoT penetration testing and hard
   <img src="https://camo.githubusercontent.com/0844b6474e2a3f6064cfc1dad6870789d23e85de208d3c6e5cc181ff470296d0/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f642f64662f57697265736861726b5f69636f6e2e737667" alt="Wireshark Logo" height="100"/>
 </div>
 
+
 > **PRE-RELEASE STATUS**: ThingNix is currently in alpha development stage. We're actively looking for testers to help identify issues and provide feedback. See the [Testing](#become-a-tester) section to get involved!
 
 ## Overview
