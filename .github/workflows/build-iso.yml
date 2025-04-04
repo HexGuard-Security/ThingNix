@@ -42,7 +42,7 @@ jobs:
           
           if [[ "${{ github.event_name }}" != "workflow_dispatch" || "${{ inputs.build_x86_64 }}" == "true" ]]; then
             echo "Building x86_64 ISO..."
-            ./build.sh --arch x86_64
+            ./build.sh --arch x86_64-linux
             echo "Creating x86_64 checksum..."
             cd build
             sha256sum thingnix-*-x86_64-*.iso > thingnix-x86_64.sha256
@@ -51,7 +51,7 @@ jobs:
           
           if [[ "${{ github.event_name }}" != "workflow_dispatch" || "${{ inputs.build_aarch64 }}" == "true" ]]; then
             echo "Building aarch64 ISO..."
-            ./build.sh --arch aarch64
+            ./build.sh --arch aarch64-linux
             echo "Creating aarch64 checksum..."
             cd build
             sha256sum thingnix-*-aarch64-*.iso > thingnix-aarch64.sha256
