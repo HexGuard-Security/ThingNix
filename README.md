@@ -78,9 +78,9 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 
 ### Utilities
 <div align="left">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Wireshark_Logo.svg" alt="Wireshark" height="50"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Wireshark_icon.svg" alt="Wireshark" height="50"/>
   <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Sigrok_logo.svg" alt="Sigrok" height="50"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Qemu_logo.svg" alt="QEMU" height="50"/>
+  <img src="https://gitlab.com/uploads/-/system/project/avatar/11167699/logo.png" alt="QEMU" height="50"/>
 </div>
 
 - Python3
