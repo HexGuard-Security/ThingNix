@@ -3,7 +3,7 @@
 {
   # Firmware analysis and exploitation tools
   
-  # Install firmware analysis tools
+  # Install firmware analysis tools and helper scripts
   environment.systemPackages = with pkgs; [
     # Firmware extraction and analysis
     binwalk
@@ -88,62 +88,8 @@
     
     # Development environments
     vscode
-  ];
-  
-  # Create directory for firmware samples
-  system.activationScripts.firmwareDir = ''
-    mkdir -p /opt/firmware
-    chown thingnix:users /opt/firmware
-  '';
-  
-  # Create workshop directory structure for firmware analysis
-  system.activationScripts.firmwareWorkshop = ''
-    mkdir -p /home/thingnix/firmware-workshop/{extracted,workbench,tools,reports}
-    chown -R thingnix:users /home/thingnix/firmware-workshop
-  '';
-  
-  # Add custom configurations for tools
-  environment.etc = {
-    # Radare2 config
-    "radare2rc".text = ''
-      # Custom radare2 configuration for firmware analysis
-      e asm.syntax = intel
-      e asm.pseudo = true
-      e bin.demangle = true
-      e cfg.fortunes = false
-    '';
     
-    # GDB initialization
-    "gdbinit".text = ''
-      set disassembly-flavor intel
-      set print pretty on
-      set pagination off
-    '';
-  };
-  
-  # Enable services needed for firmware analysis
-  services = {
-    # Network services for emulated firmware
-    dnsmasq = {
-      enable = true;
-      extraConfig = ''
-        # Configuration for firmware emulation network
-        interface=fw-net0
-        dhcp-range=192.168.200.50,192.168.200.150,12h
-        dhcp-option=option:router,192.168.200.1
-      '';
-    };
-  };
-  
-  # Network bridges for firmware emulation
-  networking.bridges = {
-    "fw-net0" = {
-      interfaces = [];
-    };
-  };
-  
-  # Create helpful scripts for firmware analysis
-  environment.systemPackages = with pkgs; [
+    # Custom scripts for firmware analysis
     (writeShellScriptBin "extract-firmware" ''
       #!/bin/sh
       # Quick firmware extraction utility
@@ -210,6 +156,58 @@
       $QEMU -L /usr/lib "$BINARY" "$@"
     '')
   ];
+  
+  # Create directory for firmware samples
+  system.activationScripts.firmwareDir = ''
+    mkdir -p /opt/firmware
+    chown thingnix:users /opt/firmware
+  '';
+  
+  # Create workshop directory structure for firmware analysis
+  system.activationScripts.firmwareWorkshop = ''
+    mkdir -p /home/thingnix/firmware-workshop/{extracted,workbench,tools,reports}
+    chown -R thingnix:users /home/thingnix/firmware-workshop
+  '';
+  
+  # Add custom configurations for tools
+  environment.etc = {
+    # Radare2 config
+    "radare2rc".text = ''
+      # Custom radare2 configuration for firmware analysis
+      e asm.syntax = intel
+      e asm.pseudo = true
+      e bin.demangle = true
+      e cfg.fortunes = false
+    '';
+    
+    # GDB initialization
+    "gdbinit".text = ''
+      set disassembly-flavor intel
+      set print pretty on
+      set pagination off
+    '';
+  };
+  
+  # Enable services needed for firmware analysis
+  services = {
+    # Network services for emulated firmware
+    dnsmasq = {
+      enable = true;
+      extraConfig = ''
+        # Configuration for firmware emulation network
+        interface=fw-net0
+        dhcp-range=192.168.200.50,192.168.200.150,12h
+        dhcp-option=option:router,192.168.200.1
+      '';
+    };
+  };
+  
+  # Network bridges for firmware emulation
+  networking.bridges = {
+    "fw-net0" = {
+      interfaces = [];
+    };
+  };
   
   # Memory limits for analysis tools
   security.pam.loginLimits = [
