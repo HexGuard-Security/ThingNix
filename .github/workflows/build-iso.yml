@@ -113,7 +113,7 @@ jobs:
       
       # Upload ISO as workflow artifact (can be accessed via nightly.link)
       - name: Upload ISO as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: thingnix-x86_64.iso
           path: build/thingnix-x86_64.iso
