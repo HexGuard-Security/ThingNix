@@ -32,7 +32,7 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 ## Tool Categories
 
 ### Firmware Analysis
-<div align="center">
+<div align="left">
   <img src="https://www.ghidra-sre.org/images/GHIDRA_1.png" alt="Ghidra" height="50"/>
   <img src="https://rada.re/n/r2logo.png" alt="Radare2" height="50"/>
   <img src="https://flashrom.org/_images/flashrom_logo.png" alt="Flashrom" height="50"/>
@@ -45,7 +45,7 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 - Flashrom
 
 ### RF/SDR
-<div align="center">
+<div align="left">
   <img src="https://www.gnuradio.org/gnuradio_logo_glyphs_as_paths.svg" alt="GNU Radio" height="50"/>
   <img src="https://raw.githubusercontent.com/gqrx-sdr/gqrx/refs/heads/master/new_logo/PNG/horizontal%20color.png" alt="GQRX" height="50"/>
 </div>
@@ -64,10 +64,10 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 - BTLEJack
 
 ### Network/Exploitation
-<div align="center">
+<div align="left">
   <img src="https://www.uvexplorer.com/wp-content/uploads/2023/07/nmap-logo-256x256-1-150x150.png" alt="Nmap" height="50"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Metasploit_logo_and_wordmark.png" alt="Metasploit" height="50"/>
   <img src="https://raw.githubusercontent.com/bettercap/media/master/logo.png" alt="Bettercap" height="50"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Metasploit_logo_and_wordmark.png" alt="Metasploit" height="50"/>
 </div>
 
 - Nmap
@@ -77,10 +77,10 @@ Part of the future "NixCraft" series for specialized pentesting domains.
 - Expliot
 
 ### Utilities
-<div align="center">
+<div align="left">
   <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Wireshark_Logo.svg" alt="Wireshark" height="50"/>
-  <img src="https://en.wikipedia.org/wiki/File:Qemu_logo.svg" alt="QEMU" height="50"/>
   <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Sigrok_logo.svg" alt="Sigrok" height="50"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Qemu_logo.svg" alt="QEMU" height="50"/>
 </div>
 
 - Python3
