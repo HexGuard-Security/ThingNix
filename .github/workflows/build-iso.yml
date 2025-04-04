@@ -40,6 +40,9 @@ jobs:
           mkdir -p build
           chmod +x build.sh
           
+          # Set environment variables for unfree packages
+          export NIXPKGS_ALLOW_UNFREE=1
+          
           if [[ "${{ github.event_name }}" != "workflow_dispatch" || "${{ inputs.build_x86_64 }}" == "true" ]]; then
             echo "Building x86_64 ISO..."
             ./build.sh --arch x86_64-linux
