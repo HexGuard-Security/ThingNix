@@ -13,9 +13,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    # Useful for creating bootable ISO images - pin to a specific version
+    # Useful for creating bootable ISO images - use a specific version tag
     nixos-generators = {
-      url = "github:nix-community/nixos-generators/release-23.11"; # Pin to 23.11 for compatibility
+      url = "github:nix-community/nixos-generators/1.7.0"; # Use specific version tag
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
