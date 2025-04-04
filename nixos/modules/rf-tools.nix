@@ -3,7 +3,7 @@
 {
   # Radio Frequency (RF) and Software Defined Radio (SDR) tools
   
-  # Install RF and SDR tools
+  # Install RF and SDR tools and helper scripts
   environment.systemPackages = with pkgs; [
     # Core SDR packages
     gnuradio
@@ -20,71 +20,72 @@
     cubicsdr
     
     # Signal analysis
+    inspectro
     inspectrum
     baudline
-    qspectrumanalyzer
+    gqrx-scanner
     
-    # Protocol analysis and decoding
-    multimon-ng
-    direwolf # AX.25 decoder
-    dump1090 # ADS-B decoder
-    
-    # Radio automation
+    # Protocol analysers
     gnuradio-osmosdr
+    gnuradio-rds
+    gnuradio-iqbal
+    gnuradio-gsm
+    gnuradio-limesdr
+    gnuradio-rftap
     
-    # Universal Radio Hacker
-    urh
+    # Specific protocols
+    multimon-ng    # POCSAG, FLEX, etc.
+    rtl-433        # 433 MHz ISM band
+    kalibrate-rtl  # GSM calibration
     
-    # RF scanning
-    rtl_433
+    # Zigbee and BLE tools
+    rfcat
+    killerbee
     
-    # Satellite tools
-    gnss-sdr
+    # Bluetooth tools
+    ubertooth
+    btscanner
+    crackle
     
-    # RF utilities
+    # RF replay/fuzzing
+    rfcat
+    rflib
+    
+    # RFID tools
+    proxmark3
+    mfoc
+    mfcuk
+    libnfc
+    
+    # Frequency utilities
+    sox            # Sound processing
+    sox-fmt-all    # All formats for SoX
+    
+    # Spectrum analysis
+    rtl-sdr
+    hackrf
     airspy
     
-    # Libraries
-    liquid-dsp
+    # Misc tools
+    gnuradio-iqbal  # Fix IQ imbalance
+    gnuradio-rds    # RDS decoder
+    bladerf         # BladeRF support
+    limesuite       # LimeSDR support
     
-    # Signal processing
-    sox
+    # Wireless tools
+    aircrack-ng
+    kismet
+    wireshark
+    wireshark-cli
     
-    # Python tools for SDR
-    python3
-    python3Packages.numpy
-    python3Packages.scipy
-    python3Packages.matplotlib
-    python3Packages.pyrtlsdr
-    
-    # DAB/DAB+ tools
-    dabtools
-    
-    # FM tools
-    redsea # RDS decoder
-    
-    # Recording and playback
-    audacity
-    
-    # Miscellaneous utilities
-    kalibrate-rtl # GSM frequency calibration
-    
-    # GNU Radio companion
-    gnuradio-with-packages
-    
-    # Development tools for SDR
-    cmake
-    gcc
-    
-    # Documentation
-    gnuradio-manual
+    # Radio signal identification 
+    sigrok
+    sigrok-cli
     
     # Frequency databases
     # (usually provided as separate data files or services)
-  ];
-  
-  # Create helpful scripts for RF analysis
-  environment.systemPackages = with pkgs; [
+    
+    # Custom scripts for RF analysis
     (writeShellScriptBin "scan-frequencies" ''
       #!/bin/sh
       # Scan frequency ranges with rtl_power
@@ -100,135 +101,118 @@
       OUTPUT=$3
       TIME=''${4:-1h}
       
-      echo "Scanning from $START to $END for $TIME, saving to $OUTPUT"
-      ${rtl-sdr}/bin/rtl_power -f $START:$END:1M -g 50 -i 10 -e $TIME $OUTPUT
-      
-      echo "Scan complete. Results saved to $OUTPUT"
-      echo "To visualize: use heatmap.py or import into spreadsheet software"
+      echo "Scanning frequencies from $START to $END for $TIME..."
+      rtl_power -f "$START:$END:1M" -g 50 -i 1 -e "$TIME" "$OUTPUT"
+      echo "Done! Results saved to $OUTPUT"
     '')
     
     (writeShellScriptBin "decode-signal" ''
       #!/bin/sh
-      # Quick signal decoding utility
+      # Helper to decode common radio signals
       
       if [ $# -lt 2 ]; then
-        echo "Usage: decode-signal <protocol> <frequency> [gain] [ppm]"
-        echo "Supported protocols: weather, tpms, doorbell, car, am, fm, flex"
+        echo "Usage: decode-signal <type> <device>"
+        echo "Available types: fm, am, pocsag, flex, weather, adsb"
+        echo "Example: decode-signal fm rtl_tcp::1234"
         exit 1
       fi
       
-      PROTOCOL=$1
-      FREQ=$2
-      GAIN=''${3:-50}
-      PPM=''${4:-0}
+      TYPE=$1
+      DEVICE=$2
       
-      case "$PROTOCOL" in
-        weather)
-          echo "Decoding weather station signals at $FREQ MHz"
-          ${rtl_433}/bin/rtl_433 -f $FREQ"e6" -g $GAIN -p $PPM
-          ;;
-        tpms)
-          echo "Decoding tire pressure monitoring signals at $FREQ MHz"
-          ${rtl_433}/bin/rtl_433 -f $FREQ"e6" -g $GAIN -p $PPM -R 13 -R 51 -R 60 -R 82 -R 83 -R 84 -R 86 -R 89
-          ;;
-        doorbell)
-          echo "Decoding doorbell/chime signals at $FREQ MHz"
-          ${rtl_433}/bin/rtl_433 -f $FREQ"e6" -g $GAIN -p $PPM -R 19 -R 30 -R 31
-          ;;
-        car)
-          echo "Decoding car remote signals at $FREQ MHz"
-          ${rtl_433}/bin/rtl_433 -f $FREQ"e6" -g $GAIN -p $PPM -R 15 -R 39
+      case "$TYPE" in
+        fm)
+          echo "Starting FM receiver..."
+          rtl_fm -f 89.5M -M wbfm -s 200000 -r 48000 - | play -r 48000 -t raw -e s -b 16 -c 1 -V1 -
           ;;
         am)
-          echo "Listening to AM radio at $FREQ MHz"
-          ${rtl-sdr}/bin/rtl_fm -M am -f $FREQ"e6" -g $GAIN -p $PPM | ${sox}/bin/play -r 24k -t raw -e signed-integer -b 16 -c 1 -V1 -
+          echo "Starting AM receiver..."
+          rtl_fm -f 1000k -M am -s 12k -r 12k - | play -r 12k -t raw -e signed-integer -b 16 -c 1 -V1 -
           ;;
-        fm)
-          echo "Listening to FM radio at $FREQ MHz"
-          ${rtl-sdr}/bin/rtl_fm -M fm -f $FREQ"e6" -g $GAIN -p $PPM | ${sox}/bin/play -r 24k -t raw -e signed-integer -b 16 -c 1 -V1 -
+        pocsag)
+          echo "Starting POCSAG decoder..."
+          rtl_fm -f 152.5M -g 42 - | multimon-ng -t raw -a POCSAG512 -a POCSAG1200 -a POCSAG2400 -f alpha -
           ;;
         flex)
-          echo "Decoding FLEX pager signals at $FREQ MHz"
-          ${multimon-ng}/bin/rtl_fm -f $FREQ"e6" -g $GAIN -p $PPM -s 22050 | ${multimon-ng}/bin/multimon-ng -t raw -a FLEX -a POCSAG512 -a POCSAG1200 -a POCSAG2400 -f alpha -
+          echo "Starting FLEX decoder..."
+          rtl_fm -f 930.5M -g 42 - | multimon-ng -t raw -a FLEX -f alpha -
+          ;;
+        weather)
+          echo "Starting NOAA Weather decoder..."
+          rtl_fm -f 162.4M -s 48k - | multimon-ng -t raw -a AFSK1200 -a AFSK2400 -a AFSK2400_2 -a AFSK2400_3 -
+          ;;
+        adsb)
+          echo "Starting ADS-B decoder..."
+          rtl_adsb
           ;;
         *)
-          echo "Unsupported protocol: $PROTOCOL"
+          echo "Unknown type: $TYPE"
           exit 1
           ;;
       esac
     '')
-    
-    (writeShellScriptBin "start-gqrx" ''
-      #!/bin/sh
-      # Start GQRX with optimal settings
-      
-      # Kill any existing instances
-      pkill -f gqrx || true
-      
-      # Set realtime priority if possible
-      if [ "$(id -u)" = "0" ]; then
-        echo "Starting GQRX with realtime priority"
-        ${coreutils}/bin/nice -n -20 ${gqrx}/bin/gqrx
-      else
-        echo "Starting GQRX (use sudo for realtime priority)"
-        ${gqrx}/bin/gqrx
-      fi
-    '')
   ];
   
-  # Set up udev rules for SDR devices
+  # Add udev rules for various SDR devices
   services.udev.extraRules = ''
     # RTL-SDR
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2832", GROUP="plugdev", MODE="0666"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838", GROUP="plugdev", MODE="0666"
     
     # HackRF
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6089", GROUP="plugdev", MODE="0666"
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="cc15", GROUP="plugdev", MODE="0666"
+    ATTR{idVendor}=="1d50", ATTR{idProduct}=="604b", SYMLINK+="hackrf-%k", MODE="660", GROUP="plugdev"
+    ATTR{idVendor}=="1d50", ATTR{idProduct}=="6089", SYMLINK+="hackrf-jawbreaker-%k", MODE="660", GROUP="plugdev"
+    ATTR{idVendor}=="1d50", ATTR{idProduct}=="cc15", SYMLINK+="rad1o-%k", MODE="660", GROUP="plugdev"
+    ATTR{idVendor}=="1fc9", ATTR{idProduct}=="000c", SYMLINK+="nxp-dfu-%k", MODE="660", GROUP="plugdev"
+    ATTR{idVendor}=="1fc9", ATTR{idProduct}=="000d", SYMLINK+="nxp-dfu-%k", MODE="660", GROUP="plugdev"
+    
+    # SDRplay
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1df7", ATTRS{idProduct}=="2500", MODE="0660", GROUP="plugdev"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1df7", ATTRS{idProduct}=="3000", MODE="0660", GROUP="plugdev"
+    
+    # BladeRF
+    ATTR{idVendor}=="2cf0", ATTR{idProduct}=="5246", MODE="660", GROUP="plugdev"
     
     # LimeSDR
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6108", GROUP="plugdev", MODE="0666"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="1d50", ATTR{idProduct}=="6108", GROUP="plugdev", MODE="0666"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="04b4", ATTR{idProduct}=="00f3", GROUP="plugdev", MODE="0666"
     
-    # Airspy
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="60a1", GROUP="plugdev", MODE="0666"
+    # YARD Stick One
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="605b", SYMLINK+="YARD-Stick-One-%k", MODE="660", GROUP="plugdev"
+    
+    # Ubertooth
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6002", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6003", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6004", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6005", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6006", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6007", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6008", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6009", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600a", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600b", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600c", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600d", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600e", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="600f", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6010", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6011", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6012", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6013", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6014", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6015", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6016", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6017", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6018", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6019", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601a", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601b", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601c", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601d", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601e", MODE="0660", GROUP="plugdev"
+    ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="601f", MODE="0660", GROUP="plugdev"
   '';
   
-  # Create workshop directory structure for RF analysis
-  system.activationScripts.rfWorkshop = ''
-    mkdir -p /home/thingnix/rf-workshop/{captures,signals,decoders,flowgraphs}
-    chown -R thingnix:users /home/thingnix/rf-workshop
-  '';
-  
-  # Configure system for optimal SDR performance
-  boot.kernel.sysctl = {
-    # Increase USB buffer for SDR devices
-    "net.core.rmem_max" = 104857600;
-    "net.core.wmem_max" = 104857600;
-  };
-  
-  # Real-time scheduling for SDR applications
-  security.pam.loginLimits = [
-    { domain = "thingnix"; type = "-"; item = "rtprio"; value = "99"; }
-  ];
-  
-  # Blacklist DVB-T kernel drivers that interfere with RTL-SDR
-  boot.blacklistedKernelModules = [
-    "dvb_usb_rtl28xxu"
-    "rtl2832"
-    "rtl2830"
-    "dvb_usb_v2"
-  ];
-  
-  # Create desktop files for common SDR applications
-  environment.etc."xdg/autostart/rtl-sdr-setup.desktop".text = ''
-    [Desktop Entry]
-    Type=Application
-    Name=RTL-SDR Setup
-    Comment=Set up RTL-SDR devices at startup
-    Exec=sh -c "sleep 5 && rtl_test -t"
-    Terminal=false
-    Categories=System;
-    NoDisplay=true
-    X-GNOME-Autostart-enabled=true
-  '';
+  # Group configuration for SDR/RF devices
+  users.groups.plugdev = {};
 }
