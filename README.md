@@ -1,25 +1,10 @@
 # ThingNix
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![NixOS](https://img.shields.io/badge/NixOS-25.05-blue.svg?logo=nixos&logoColor=white)](https://nixos.org)
-[![Open Source Hardware](https://img.shields.io/badge/Hardware-Open%20Source-orange.svg?logo=open-source-initiative&logoColor=white)](https://www.oshwa.org)
-[![Version](https://img.shields.io/badge/Version-0.1.0--alpha-brightgreen.svg)](https://github.com/HexGuard-Security/ThingNix/releases)
-[![Maintained by HexGuard-Security](https://img.shields.io/badge/Maintained%20by-HexGuard--Security-red.svg)](https://github.com/HexGuard-Security)
-[![Status](https://img.shields.io/badge/Status-Pre--Release-yellow.svg)]()
+![banner](assets/banner/banner.png)
 
 A reproducible NixOS-based operating system for IoT penetration testing and hardware hacking.
 
-<div align="left">
-  <img src="https://nixos.org/logo/nixos-logo-only-hires.png" alt="NixOS Logo" height="100"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Open-source-hardware-logo.svg" alt="Open Source Hardware Logo" height="100"/>
-  <img src="https://camo.githubusercontent.com/f4dde6518bf93a3a17b3b12c9c747d79c0e02984c1ce8f4fdcd0ccb339d02057/68747470733a2f2f7777772e6768696472612d7372652e6f72672f696d616765732f4748494452415f312e706e67" alt="Ghidra Logo" height="100"/>
-  <img src="https://greatscottgadgets.com/images/gsglogosolid.png" alt="Great Scott Gadgets Logo" height="100"/>
-  <img src="https://raw.githubusercontent.com/bettercap/media/master/logo.png" alt="Bettercap Logo" height="100"/>
-  <img src="https://camo.githubusercontent.com/0844b6474e2a3f6064cfc1dad6870789d23e85de208d3c6e5cc181ff470296d0/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f642f64662f57697265736861726b5f69636f6e2e737667" alt="Wireshark Logo" height="100"/>
-</div>
-
-
-> **PRE-RELEASE STATUS**: ThingNix is currently in alpha development stage. We're actively looking for testers to help identify issues and provide feedback. See the [Testing](#become-a-tester) section to get involved!
+> **PRE-RELEASE STATUS**: ThingNix is currently in alpha development stage. We're actively looking for testers to help identify issues and provide feedback. See the [Become a Tester](#become-a-tester) section to get involved!
 
 ## Overview
 
@@ -34,133 +19,6 @@ Trying to solve a major problem with other IOT Pentesting distributions. That is
 - **Pre-configured Hardware Support**: Ready-to-use drivers and udev rules for common pentesting hardware
 - **Specialized Tooling**: Curated collection of tools for IoT security research
 - **Community-Driven**: Open to contributions and tool suggestions
-
-## Tool Categories
-
-### Firmware Analysis
-<div align="left">
-  <img src="https://www.ghidra-sre.org/images/GHIDRA_1.png" alt="Ghidra" height="50"/>
-  <img src="https://rada.re/n/r2logo.png" alt="Radare2" height="50"/>
-  <img src="https://flashrom.org/_images/flashrom_logo.png" alt="Flashrom" height="50"/>
-</div>
-
-| Tool | Description |
-|------|-------------|
-| Binwalk | Firmware analysis and extraction tool |
-| Ghidra | NSA's software reverse engineering framework |
-| Radare2 | Advanced hexadecimal editor, disassembler, and debugger |
-| Radare2-Cutter | GUI for Radare2 |
-| Rizin | UNIX-like reverse engineering framework |
-| OpenOCD | Open on-chip debugger for JTAG/SWD debugging |
-| Flashrom | ROM/flash chip programmer for firmware extraction |
-| GDB | GNU debugger for binary analysis |
-| GDB-Multitarget | GNU debugger with multi-architecture support |
-| IDA Free | Interactive disassembler (free version) |
-| Firmware-mod-kit | Tools to extract, modify and rebuild firmware images |
-| Unicorn | CPU emulator framework |
-
-### RF/SDR
-<div align="left">
-  <img src="https://www.gnuradio.org/gnuradio_logo_glyphs_as_paths.svg" alt="GNU Radio" height="50"/>
-  <img src="https://raw.githubusercontent.com/gqrx-sdr/gqrx/refs/heads/master/new_logo/PNG/horizontal%20color.png" alt="GQRX" height="50"/>
-</div>
-
-| Tool | Description |
-|------|-------------|
-| RTL-SDR | Software defined radio with RTL2832U chipset |
-| GNURadio | Signal processing framework for SDR |
-| GQRX | Software defined radio receiver |
-| Inspectrum | Tool for analyzing captured RF signals |
-| SDR++ | Modern SDR software with intuitive interface |
-| SDRangel | Multi-device SDR receiver/analyzer |
-| HackRF | Tools for HackRF SDR platform |
-| Multimon-NG | Digital transmission decoder (POCSAG, FLEX, etc.) |
-| Baudline | Time-frequency browser for signal analysis |
-| Airspy | Tools for Airspy SDR hardware |
-| gr-osmosdr | GNURadio block for various SDR hardware |
-| Kalibrate-RTL | Tool to check frequency accuracy of GSM base stations |
-
-### Bluetooth/BLE/Zigbee
-<div align="left">
-  <img src="https://greatscottgadgets.com/images/gsglogosolid.png" alt="Great Scott Gadgets" height="50"/>
-  <img src="https://camo.githubusercontent.com/9821c0a7122b8b41fe901586ad3efe5e5622687f61a73e0f51e88ac0833c6fbc/68747470733a2f2f7261772e6769746875622e636f6d2f6d696b657279616e2f637261636b6c652f6c6f676f2f637261636b6c652e706e67" alt="Crackle" height="50"/>
-</div>
-
-| Tool | Description |
-|------|-------------|
-| KillerBee | Framework for Zigbee/IEEE 802.15.4 security testing |
-| Bleah | BLE scanner for smart devices hacking |
-| Crackle | Decrypt and crack Bluetooth Smart (BLE) encryption |
-| BTLEJack | Bluetooth Low Energy Swiss-army knife |
-| Bluez | Linux Bluetooth protocol stack |
-| Ubertooth | Open source platform for Bluetooth experimentation |
-| Bluez-tools | Command-line utilities for Bluetooth |
-| Bluez-alsa | Bluetooth ALSA backend |
-| Btscanner | Bluetooth device scanner |
-| RFcat | RF analysis for sub-GHz communication |
-
-### Network/Exploitation
-<div align="left">
-  <img src="https://www.uvexplorer.com/wp-content/uploads/2023/07/nmap-logo-256x256-1-150x150.png" alt="Nmap" height="50"/>
-  <img src="https://raw.githubusercontent.com/bettercap/media/master/logo.png" alt="Bettercap" height="50"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Metasploit_logo_and_wordmark.png" alt="Metasploit" height="50"/>
-</div>
-
-| Tool | Description |
-|------|-------------|
-| Nmap | Network discovery and security auditing tool |
-| Metasploit | Penetration testing framework |
-| Bettercap | Swiss-army knife for network attacks and monitoring |
-| RouterSploit | Framework for embedded device exploitation |
-| Expliot | IoT exploitation framework |
-| Wireshark | Network protocol analyzer |
-| Burpsuite | Web application security testing platform |
-| ZAP Proxy | OWASP web application security scanner |
-| SQLmap | Automatic SQL injection tool |
-| THC-Hydra | Network login cracker |
-| John the Ripper | Password cracking tool |
-| Hashcat | Advanced password recovery utility |
-| Aircrack-ng | Wireless network security assessment tools |
-
-### Hardware Tools
-<div align="left">
-  <img src="https://raw.githubusercontent.com/chipcode-nl/picoprobe-mac/master/images/Raspberry_Debugprobe_512.png" alt="OpenOCD" height="50"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Sigrok_logo.svg" alt="Sigrok" height="50"/>
-</div>
-
-| Tool | Description |
-|------|-------------|
-| OpenOCD | On-chip debugging, in-system programming, boundary-scan testing |
-| Sigrok | Signal analysis software suite |
-| Pulseview | Logic analyzer user interface for Sigrok |
-| Avrdude | AVR microcontroller programmer |
-| Arduino | Arduino IDE and tools |
-| PlatformIO | Cross-platform IDE for embedded development |
-| I2C-tools | Utilities for I2C bus |
-| SPI-tools | Utilities for SPI bus |
-| Flashrom | Universal ROM/flash chip programmer |
-| Bus Pirate | Hardware and software tools for bus communication |
-| Logic analyzer | Digital signal capture and analysis |
-
-### Utilities
-<div align="left">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Wireshark_icon.svg" alt="Wireshark" height="50"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Sigrok_logo.svg" alt="Sigrok" height="50"/>
-  <img src="https://gitlab.com/uploads/-/system/project/avatar/11167699/logo.png" alt="QEMU" height="50"/>
-</div>
-
-| Tool | Description |
-|------|-------------|
-| Python3 | Programming language with tools for IoT security |
-| Wireshark | Network protocol analyzer |
-| QEMU | Open source machine emulator and virtualizer |
-| Sigrok | Signal analysis software suite |
-| Git | Version control system |
-| VSCode | Code editor for development and analysis |
-| Docker | Container platform for isolated testing |
-| Virt-Manager | Desktop tool for managing virtual machines |
-| OpenSSH | Remote access and file transfer tools |
-| Tmux | Terminal multiplexer for managing multiple console sessions |
 
 ## Getting Started
 
@@ -252,47 +110,7 @@ We particularly need testers with:
 
 ## Community & Design Contributions
 
-ThingNix features a growing collection of custom assets including icons, wallpapers, and themes:
-
-<div align="center">
-  <img src="assets/icons/thingnix-icon.svg" alt="ThingNix Icon" height="100"/>
-  <img src="assets/icons/tools/network-icon.svg" alt="Network Tools Icon" height="100"/>
-  <img src="assets/icons/tools/firmware-icon.svg" alt="Firmware Tools Icon" height="100"/>
-  <img src="assets/icons/tools/sdr-icon.svg" alt="SDR Tools Icon" height="100"/>
-</div>
-
-<div align="center">
-  <img src="assets/wallpapers/wallpaper-01.png" alt="ThingNix Wallpaper 1" height="420"/>
-</div>
-<div align="center">
-  <img src="assets/wallpapers/wallpaper-02.png" alt="ThingNix Wallpaper 2" height="420"/>
-</div>
-<div align="center">
-  <img src="assets/wallpapers/wallpaper-03.png" alt="ThingNix Wallpaper 3" height="420"/>
-</div>
-<div align="center">
-  <img src="assets/wallpapers/wallpaper-04.png" alt="ThingNix Wallpaper 4" height="420"/>
-</div>
-<div align="center">
-  <img src="assets/wallpapers/wallpaper-05.png" alt="ThingNix Wallpaper 5" height="420"/>
-</div>
-
-### We're Looking for Design Contributors!
-
-Are you skilled with:
-- Vector graphics design (SVG)
-- Inkscape or other open-source design tools
-- UI/UX design for Linux environments
-- GNU/Linux theming
-
-Join our community and help shape the visual identity of ThingNix! We welcome contributions for:
-- Additional wallpapers
-- Tool-specific icons
-- UI theme improvements
-- Logo variations
-- Documentation illustrations
-
-See our [contribution guidelines](CONTRIBUTING.md) to get started or join our [Discord community](https://discord.gg/j2fFUYT8h7).
+We're looking for contributors skilled with vector graphics (SVG), Inkscape, UI/UX, and theming. Help with wallpapers, icons, and UI improvements is welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
 
 ## Customization
 
